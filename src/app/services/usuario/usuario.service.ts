@@ -3,15 +3,16 @@ import { Usuario } from 'src/models/usuario.model';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from 'src/app/config/config';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
   usuario:Usuario;
   token:string;
-  constructor(public http: HttpClient) { 
+  constructor(public http: HttpClient,public router: Router) { 
     this.cargarStorge();
     console.log('Servicio Listo');
 }
@@ -75,5 +76,13 @@ login(usuario:Usuario, recuerdame:boolean=false)
     this.guardarStorage(resp.id, resp.token, resp.usuario);
     return true;
   }));
+}
+logOut()
+{
+  this.usuario=null;
+  this.token="";
+  localStorage.removeItem('token');
+  localStorage.removeItem('usuario');
+  this.router.navigate(['/login'])
 }
 }
