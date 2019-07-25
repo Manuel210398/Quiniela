@@ -6,11 +6,15 @@ import { PAGES_ROUTES } from './pages.routes';
 import {FormsModule} from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import {PipesModule} from '../pipes/pipes.module';
+import { ProfileComponent } from './profile/profile.component';
+import { CommonModule } from '@angular/common';
 @NgModule({
     declarations: [
         DashboardComponent,
         PagesComponent,
-        AccountSettingsComponent
+        AccountSettingsComponent,
+        ProfileComponent
         
     ],
     exports: [
@@ -18,11 +22,12 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
         PagesComponent
     ],
     imports: [
+        CommonModule,
         SharedModule,
         PAGES_ROUTES,
         FormsModule,
-        ChartsModule
-
+        ChartsModule,
+        PipesModule
     ]
 })
 
