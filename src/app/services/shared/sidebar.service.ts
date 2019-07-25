@@ -13,6 +13,17 @@ export class SidebarService {
       [
         {titulo : 'Dashboard', url: '/dashboard'}
       ]
+    },
+    {
+      titulo: 'Mantenimientos',
+      icono: 'mdi mdi-folder-lock-open',
+      submenu:[
+        {titulo: 'Usuarios', url:'/usuarios'},
+        {titulo: 'Partidos', url:'/partidos'},
+        {titulo: 'Equipos', url:'/equipos'},
+        {titulo: 'Estadios', url:'/estadios'},
+        
+      ]
     }
   ];
   constructor() { }

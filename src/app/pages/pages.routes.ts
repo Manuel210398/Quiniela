@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import {LoginGuardGuard} from '../services/service.index';
 import { ProfileComponent } from './profile/profile.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 const pagesRoutes: Routes = [
     {
@@ -13,6 +14,9 @@ const pagesRoutes: Routes = [
             {path: 'dashboard', component: DashboardComponent, data: {titulo:'Dashboard'}},
             {path: 'account-settings', component: AccountSettingsComponent , data: {titulo:'Ajustes del Tema'}},
             {path: 'profile', component: ProfileComponent , data: {titulo:'Perfil de Usuario'}},
+            
+            
+            {path: 'usuarios', component: UsuariosComponent , data: {titulo:'Mantenimiento de Usuarios'}},
             {path: '', redirectTo : '/dashboard', pathMatch: 'full'}
         ]
     }

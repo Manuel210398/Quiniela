@@ -9,12 +9,16 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import {PipesModule} from '../pipes/pipes.module';
 import { ProfileComponent } from './profile/profile.component';
 import { CommonModule } from '@angular/common';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 @NgModule({
     declarations: [
         DashboardComponent,
         PagesComponent,
         AccountSettingsComponent,
-        ProfileComponent
+        ProfileComponent,
+        UsuariosComponent,
+        ModalUploadComponent
         
     ],
     exports: [
