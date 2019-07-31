@@ -12,6 +12,9 @@ import { CommonModule } from '@angular/common';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 import { EquiposComponent } from './equipos/equipos.component';
+import { EstadiosComponent } from './estadios/estadios.component';
+import { PartidosComponent } from './partidos/partidos.component';
+import { PartidoComponent } from './partidos/partido.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +24,10 @@ import { EquiposComponent } from './equipos/equipos.component';
         ProfileComponent,
         UsuariosComponent,
         ModalUploadComponent,
-        EquiposComponent
+        EquiposComponent,
+        EstadiosComponent,
+        PartidosComponent,
+        PartidoComponent
         
     ],
     exports: [

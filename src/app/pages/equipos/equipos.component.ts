@@ -4,6 +4,8 @@ import { Equipo } from 'src/models/equipo.model';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalUploadService } from 'src/app/components/modal-upload/modal-upload.service';
+import { EstadioService } from 'src/app/services/estadios/estadio.service';
+import { Estadio } from 'src/models/estadio.model';
 
 @Component({
   selector: 'app-equipos',
@@ -13,18 +15,37 @@ import { ModalUploadService } from 'src/app/components/modal-upload/modal-upload
 export class EquiposComponent implements OnInit {
   aux:string;
   equipos:Equipo[]=[];
+  estadios:Estadio[]=[];
   desde:number=0;
   totalRegistro:number=0;
   cargando:boolean=true;
   constructor(public _equipoService:EquiposService
-    , public _modalUploadService: ModalUploadService) { }
+    , public _modalUploadService: ModalUploadService,public _estadiosService:EstadioService) { }
 
   ngOnInit() {
     this.cargarEquipos();
+    this.cargarEstadios();
     this._modalUploadService.notificacion.subscribe(()=>
     {
       this.cargarEquipos();
     });
+  }
+  cargarEstadios()
+  {
+    this._estadiosService.cargarTodosEstadios()
+    .subscribe((resp:any)=>
+    {
+      console.log(resp);
+      this.estadios=resp.estadios;
+    });
+  }
+  cargarTodosEquipos()
+  {
+    this._equipoService.cargarTodosEquipos()
+    .subscribe((resp:any)=>
+    {
+      this.equipos=resp.equipos;
+    }); 
   }
   cargarEquipos()
   { 
@@ -113,6 +134,7 @@ export class EquiposComponent implements OnInit {
   actualizarImagen(equipo:Equipo)
   {
     this._modalUploadService.mostrarModal('equipos',equipo._id);
+    this.cargarEquipos();
   }
 }
  

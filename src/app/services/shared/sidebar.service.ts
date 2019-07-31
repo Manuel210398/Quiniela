@@ -22,7 +22,6 @@ export class SidebarService {
         {titulo: 'Partidos', url:'/partidos'},
         {titulo: 'Equipos', url:'/equipos'},
         {titulo: 'Estadios', url:'/estadios'},
-        
       ]
     }
   ];

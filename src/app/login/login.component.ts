@@ -37,7 +37,8 @@ export class LoginComponent implements OnInit {
       .subscribe
       (resp=>
       {
-        console.log(resp);
+        //console.log(resp);
+        console.log(token);
         Swal.fire ('Bienvenido','hola','success');
         this.router.navigate(['/dashboard']);
       });
@@ -69,6 +70,7 @@ export class LoginComponent implements OnInit {
         console.log(resp);
         Swal.fire ('Bienvenido',usuario.email,'success');
         this.router.navigate(['/dashboard']);
+        
       },err=>{
         Swal.fire ('Error','Verifique su Correo o Contraseña','error');
       });

@@ -1,0 +1,80 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input #input (keyup)="buscarEstadios(input.value)"  type="text" class="form-control" placeholder="Buscar estadio....">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row animated fadeIn" *ngIf="cargando">
+    <div class="col-sm-12">
+        <div class="alert alert-warning text-center ">
+            <strong>Cargando</strong>
+            <br>
+
+            
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Cargando Informacion</span>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-right">
+                        <button [routerLink]="['/partido','nuevo']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                            <i class="fa fa-plus">Crear Partido</i>
+                        </button>
+
+                </div>
+                <h3 class="card-title">Jornada(<small>{{totalRegistro}}</small>)</h3>
+                
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Equipo Anfitrion</th>
+                            <th>Equipo Visitante</th>
+                            <th>Fecha</th>
+                            <th>STATUS</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let partido of partidos">
+                            <th>
+                                {{partido.anfitrion?.nombre}}
+                            </th>
+                            <th>
+                                {{partido.visitante?.nombre}}
+                                
+                            </th>
+                            <th>
+                                {{partido.fecha | date}}
+                            </th>
+                            <th>
+                                {{partido.estatus}}
+                            </th>
+                            <th>
+
+                            <button  [routerLink]="['/partido',partido._id]" class="btn btn-primary">
+                                    <i class="fa fa-save"></i>
+                                </button>
+                            </th>
+                            <th> <button (click)="eliminarPartido(partido)" class="btn btn-danger">
+                                <i class="fa fa-trash-o"></i>
+                            </button></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

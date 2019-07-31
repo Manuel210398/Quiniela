@@ -18,18 +18,23 @@ export class EquiposService {
     public router: Router,
     public _usuarioService: UsuarioService) 
     { 
-      console.log('Servicio listo');
+      console.log('Servicio listo de Equipos');
     }
   cargarEquipos(desde:number)
   {
     let url= URL_SERVICIOS + '/equipo?desde='+desde;
     return this.http.get(url);
   }
+  cargarTodosEquipos()
+  {
+    let url= URL_SERVICIOS + '/equipo/s';
+    return this.http.get(url);
+  }
   obtenerEquipo(id:string)
   {
     let url= URL_SERVICIOS +'/equipo/'+id;
     return this.http.get(url)
-    .pipe(map((resp:any)=>resp.equipos));
+    .pipe(map((resp:any)=>resp.equipo));
   }
   borrarEquipo(id:string)
   {
@@ -60,6 +65,7 @@ export class EquiposService {
   actualizarEquipo(equipo:Equipo){
     let url= URL_SERVICIOS+ '/equipo/' + equipo._id;
     url+='?token='+ this._usuarioService.token;
+    console.log(this._usuarioService.token);
     return this.http.put(url,equipo)
     .pipe(map((resp:any)=>
       {

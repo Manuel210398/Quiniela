@@ -6,6 +6,9 @@ import {LoginGuardGuard} from '../services/service.index';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { EquiposComponent } from './equipos/equipos.component';
+import { EstadiosComponent } from './estadios/estadios.component';
+import { PartidosComponent } from './partidos/partidos.component';
+import { PartidoComponent } from './partidos/partido.component';
 
 const pagesRoutes: Routes = [
     {
@@ -17,6 +20,9 @@ const pagesRoutes: Routes = [
             {path: 'profile', component: ProfileComponent , data: {titulo:'Perfil de Usuario'}},           
             {path: 'usuarios', component: UsuariosComponent , data: {titulo:'Mantenimiento de Usuarios'}},
             {path: 'equipos', component: EquiposComponent , data: {titulo:'Mantenimineto de Equipos'}},
+            {path: 'estadios', component: EstadiosComponent , data: {titulo:'Mantenimineto de Estadios'}},
+            {path: 'partidos', component: PartidosComponent , data: {titulo:'Mantenimineto de Partidos'}},
+            {path: 'partido/:id', component: PartidoComponent , data: {titulo:'Actualizar Partido'}},
             {path: '', redirectTo : '/dashboard', pathMatch: 'full'}
         ]
     }
