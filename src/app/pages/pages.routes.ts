@@ -9,6 +9,7 @@ import { EquiposComponent } from './equipos/equipos.component';
 import { EstadiosComponent } from './estadios/estadios.component';
 import { PartidosComponent } from './partidos/partidos.component';
 import { PartidoComponent } from './partidos/partido.component';
+import { QuinielaComponent } from './quiniela/quiniela.component';
 
 const pagesRoutes: Routes = [
     {
@@ -23,6 +24,7 @@ const pagesRoutes: Routes = [
             {path: 'estadios', component: EstadiosComponent , data: {titulo:'Mantenimineto de Estadios'}},
             {path: 'partidos', component: PartidosComponent , data: {titulo:'Mantenimineto de Partidos'}},
             {path: 'partido/:id', component: PartidoComponent , data: {titulo:'Actualizar Partido'}},
+            {path: 'quiniela', component: QuinielaComponent , data: {titulo:'Actualizar Partido'}},
             {path: '', redirectTo : '/dashboard', pathMatch: 'full'}
         ]
     }

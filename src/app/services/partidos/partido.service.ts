@@ -49,12 +49,6 @@ export class PartidoService {
           return resp.partido;
         }));
     }
-
-
-
-
-
-   
   }
 
   actualizarPartido(partido: Partido) {
