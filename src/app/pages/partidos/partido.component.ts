@@ -7,6 +7,7 @@ import { PartidoService } from 'src/app/services/partidos/partido.service';
 import { Estadio } from 'src/models/estadio.model';
 import { EstadioService } from 'src/app/services/estadios/estadio.service';
 import { Route, Router,ActivatedRoute } from '@angular/router';
+import { Jornada } from 'src/models/jornada.model';
 
 @Component({
   selector: 'app-partido',
@@ -14,7 +15,7 @@ import { Route, Router,ActivatedRoute } from '@angular/router';
   styles: []
 })
 export class PartidoComponent implements OnInit {
-
+  jordanas:Jornada[]=[];
   equipos:Equipo[]=[];
   partido:Partido= new Partido('','');
   estadio:Estadio[]=[];
@@ -34,6 +35,7 @@ export class PartidoComponent implements OnInit {
 
   ngOnInit() {
     this.cargarEquipos();
+    this.cargarJornadas();
   }
   cargarPartido(id:string)
   {
@@ -49,6 +51,16 @@ export class PartidoComponent implements OnInit {
       this.cambioEstadioDos(this.equipo2);
     });
   }
+  cargarJornadas()
+  { 
+    this._partidoService.obtenerJornadas()
+    .subscribe((resp:any)=>
+    { 
+      console.log(resp);
+      this.jordanas=resp.jornadas;
+      console.log(this.jordanas);
+    });
+  }
   cargarEquipos()
   { 
     this._equipoService.cargarTodosEquipos()
@@ -56,6 +68,7 @@ export class PartidoComponent implements OnInit {
     {
       console.log(resp);
       this.equipos= resp.equipos;
+      console.log(this.equipos);
     });
   }
   guardarPartido(f:NgForm)
