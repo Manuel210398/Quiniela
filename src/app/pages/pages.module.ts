@@ -15,6 +15,7 @@ import { EquiposComponent } from './equipos/equipos.component';
 import { EstadiosComponent } from './estadios/estadios.component';
 import { PartidosComponent } from './partidos/partidos.component';
 import { PartidoComponent } from './partidos/partido.component';
+import { QuinielaComponent } from './quiniela/quiniela.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { PartidoComponent } from './partidos/partido.component';
         EquiposComponent,
         EstadiosComponent,
         PartidosComponent,
-        PartidoComponent
+        PartidoComponent,
+        QuinielaComponent
         
     ],
     exports: [
