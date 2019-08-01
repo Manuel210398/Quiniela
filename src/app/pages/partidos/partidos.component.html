@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <input #input (keyup)="buscarEstadios(input.value)"  type="text" class="form-control" placeholder="Buscar partido....">
+                <input #input (keyup)="buscarEstadios(input.value)"  type="text" class="form-control" placeholder="Buscar partido...">
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
             
             <i class="fa fa-refresh fa-spin fa-2x"></i>
             <br>
-            <span>Cargando Informacin</span>
+            <span>Cargando Informaci&oacute;n</span>
         </div>
     </div>
 </div>
@@ -41,9 +41,7 @@
                             <th>Fecha</th>
                             <th>Estatus</th>
                             <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -64,10 +62,9 @@
                             <th>
 
                             <button  [routerLink]="['/partido',partido._id]" class="btn btn-primary">
-                                    <i class="fa fa-save"></i>
+                                    <i class="fa fa-edit"></i>
                                 </button>
-                            </th>
-                            <th> <button (click)="eliminarPartido(partido)" class="btn btn-danger">
+                             <button (click)="eliminarPartido(partido)" class="btn btn-danger">
                                 <i class="fa fa-trash-o"></i>
                             </button></th>
                         </tr>
