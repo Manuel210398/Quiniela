@@ -7,8 +7,8 @@
                 <div class="col-sm-12 col-xs-12">
                     <form  #f="ngForm" ngNativeValidate (ngSubmit)="guardarPartido(f)">
                         <div class="form-group">
+                            Seleccione Equipo Anfitrion
                             <select (change)="cambioEstadio( $event.target.value )" [(ngModel)]="partido.anfitrion" name="anfitrion" class="form-control" required>
-                                <option value="">Seleccione Equipo Anfitrion</option>
                                 <option *ngFor="let equipo of equipos" [value]="equipo._id">
                                   {{ equipo.nombre }}
                                 </option>
@@ -16,8 +16,8 @@
                         </div>
 
                         <div class="form-group">
+                            Seleccione Equipo Visitante
                             <select (change)="cambioEstadioDos( $event.target.value )" [(ngModel)]="partido.visitante" name="visitante" class="form-control" required>
-                              <option value="">Seleccione Equipo Visitante</option>
                               <option *ngFor="let equipo of equipos" [value]="equipo._id">
                                 {{ equipo.nombre }}
                               </option>
@@ -26,8 +26,9 @@
 
 
                         <div class="form-group">
+                            Seleccione la Jornada
                             <select  [(ngModel)]="partido.jornada" name="jordana" class="form-control" required>
-                              <option value="">Seleccione la Jornada</option>
+                              <!--<option value="">Seleccione la Jornada</option>-->
                               <option *ngFor="let jordana of jordanas" [value]="jordana._id">
                                 {{ jordana.nombre }}
                               </option>

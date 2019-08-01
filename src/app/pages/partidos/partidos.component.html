@@ -31,8 +31,15 @@
                         </button>
 
                 </div>
-                <h3 class="card-title">Jornada(<small>{{totalRegistro}}</small>)</h3>
-                
+                <h3 class="card-title">Seleccione la Jornada</h3>
+                <select (change)="cambioJornada( $event.target.value )" [(ngModel)]="jornadas._id" name="visitante" class="form-control" required>
+                    <option *ngFor="let jornada of jornadas" [value]="jornada._id">
+                        {{ jornada.nombre }}
+                    </option>
+                </select>
+                <br>
+                <br>
+                <br>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -51,7 +58,6 @@
                             </th>
                             <th>
                                 {{partido.visitante?.nombre}}
-                                
                             </th>
                             <th>
                                 {{partido.fecha | date}}

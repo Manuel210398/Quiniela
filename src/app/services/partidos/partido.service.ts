@@ -30,13 +30,22 @@ export class PartidoService {
 
   crearPartido(partido: Partido) {
     let url = URL_SERVICIOS + '/partido';
-    if (partido._id){
+    if (partido._id)
+    {
       url+='/'+partido._id;
+      url += '?token=' + this._usuarioService.token;
+      return this.http.put(url,partido)
+      .pipe(map((resp:any)=>
+        {
+          Swal.fire('Importante', 'El partido se ha Actualizado Correctamente', 'success');
+          console.log(resp.partido);
+          return resp.partido;
+        }));
     }else{
       url += '?token=' + this._usuarioService.token;
       return this.http.post(url, partido)
         .pipe(map((resp: any) => {
-          Swal.fire('Importante', 'Te has Registrado Correctamente', 'success');
+          Swal.fire('Importante', 'El partido se ha Registrado Correctamente', 'success');
           return resp.partido;
         }));
     }
@@ -70,6 +79,11 @@ export class PartidoService {
   obtenerJornadas()
   {
     let url = URL_SERVICIOS + '/jornada';
+    return this.http.get(url);
+  }
+  obtenerPartidoporJornada(id:string)
+  {
+    let url = URL_SERVICIOS + '/partidoporjornada/'+ id;
     return this.http.get(url);
   }
 
