@@ -11,6 +11,8 @@ export class ModalUploadService {
   public notificacion = new EventEmitter<any>();
   constructor() {
     console.log('modal upload listo');
+    this.oculto = 'oculto';
+
   }
 
 
@@ -21,6 +23,8 @@ export class ModalUploadService {
     this.id = null;
   }
   mostrarModal( tipo: string, id: string ) {
+    console.log('mostrar modal');
+
     this.oculto = '';
     this.id = id;
     this.tipo = tipo;

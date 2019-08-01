@@ -6,18 +6,25 @@
                 <h6 class="card-subtitle">Quiniela</h6>
                 <form  ngNativeValidate #f="ngForm" (ngSubmit)="guardar(f.value)" class="form p-t-20">
                     <div class="form-group">
-                        <label for="exampleInputuname">Nombre de usuario</label>
+                        <label for="username">Nombre de usuario</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-user"></i></div>
-                            <input [ngModel]="usuario.nombre" name="nombre" type="text" class="form-control"  placeholder="Nombre de Usuario " required>
+                            <input id="username" [ngModel]="usuario.nombre" name="nombre" type="text" class="form-control"  placeholder="Nombre de Usuario " required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email </label>
+                        <label for="email">Email </label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-email"></i></div>
-                            <input  [ngModel]="usuario.email" type="email"  name="email" class="form-control"  placeholder="Correo de Usuario" [disabled]="usuario.google">
+                            <input id="email" [ngModel]="usuario.email" type="email"  name="email" class="form-control"  placeholder="Correo de Usuario" [disabled]="usuario.google">
                         </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="nickname">Apodo </label>
+                      <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-email"></i></div>
+                        <input id="nickname" [ngModel]="usuario.nickname" type="email"  name="email" class="form-control"  placeholder="Apodo" >
+                      </div>
                     </div>
                     <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Guardar</button>
                     <i class="fa fa-save"></i>
