@@ -22,7 +22,16 @@ export class SidebarService {
         {titulo: 'Partidos', url: '/partidos'},
         {titulo: 'Equipos', url: '/equipos'},
         {titulo: 'Estadios', url: '/estadios'},
-        {titulo: 'Quiniela', url: '/quiniela'}
+        {titulo: 'Resultados', url: '/quiniela'}
+      ]
+    },
+    {
+      titulo: 'Quiniela',
+      icono: 'mdi mdi-scale',
+      submenu: [
+        {titulo: 'Quiniela', url: '/quiniela'},
+        {titulo: 'Resultados', url: '/resultados'},
+
       ]
     }
   ];
