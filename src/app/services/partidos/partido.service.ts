@@ -13,7 +13,7 @@ import {Partido} from 'src/models/partidos.model';
 export class PartidoService {
 
   constructor(public _usuarioService: UsuarioService, public http: HttpClient,
-              public router: Router,) {
+              public router: Router) {
   }
 
 

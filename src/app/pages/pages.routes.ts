@@ -10,6 +10,8 @@ import { EstadiosComponent } from './estadios/estadios.component';
 import { PartidosComponent } from './partidos/partidos.component';
 import { PartidoComponent } from './partidos/partido.component';
 import { QuinielaComponent } from './quiniela/quiniela.component';
+import { JornadasComponent } from './jornadas/jornadas.component';
+import { JornadaComponent } from './jornadas/jornada.component';
 
 const pagesRoutes: Routes = [
     {
@@ -23,8 +25,10 @@ const pagesRoutes: Routes = [
             {path: 'equipos', component: EquiposComponent , data: {titulo:'Mantenimineto de Equipos'}},
             {path: 'estadios', component: EstadiosComponent , data: {titulo:'Mantenimineto de Estadios'}},
             {path: 'partidos', component: PartidosComponent , data: {titulo:'Mantenimineto de Partidos'}},
-            {path: 'partido/:id', component: PartidoComponent , data: {titulo:'Actualizar Partido'}},
-            {path: 'quiniela', component: QuinielaComponent , data: {titulo:'Actualizar Partido'}},
+            {path: 'partido/:id', component: PartidoComponent , data: {titulo:'Mantenimineto Partido'}},
+            {path: 'quiniela', component: QuinielaComponent , data: {titulo:'Mantenimineto Quiniela'}},
+            {path: 'jornadas', component: JornadasComponent , data: {titulo:'Mantenimineto Jornadas'}},
+            {path: 'jornada/:id', component: JornadaComponent , data: {titulo:'Mantenimineto Jornada'}},
             {path: '', redirectTo : '/dashboard', pathMatch: 'full'}
         ]
     }

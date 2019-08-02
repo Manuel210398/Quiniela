@@ -1,0 +1,76 @@
+
+<div class="row animated fadeIn" *ngIf="cargando">
+        <div class="col-sm-12">
+            <div class="alert alert-warning text-center ">
+                <strong>Cargando</strong>
+                <br>
+                <i class="fa fa-refresh fa-spin fa-2x"></i>
+                <br>
+                <span>Cargando Informaci&oacute;n</span>
+            </div>
+        </div>
+    </div>
+
+<div class="row animated fadeIn">
+    <div class="col-md-12">
+        <div class="card card-body">
+            <div class="text-right">
+                    <button [routerLink]="['/jornada','nuevo']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                        <i class="fa fa-plus"> Crear Partido</i>
+                    </button>
+            </div>
+            <h3 class="box-title m-b-0">Jornadas </h3>
+            <br>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Nombre Corto</th>
+                            <th>Torneo</th>
+                            <th>Estatus</th>
+                            <th>Fecha de Inicio</th>
+                            <th>Fecha de Termino</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let jornada of jordanas">
+                            <th>
+                                <input [(ngModel)]="jornada.nombre" name="nombre" type="text" class="form-control"  placeholder="Nombre de la Jornada " required>
+                            </th>
+                            <th>
+                                <input [(ngModel)]="jornada.nombreCorto" name="nombrec" type="text" class="form-control"  placeholder="Nombre Cortor de la Jornada " required>
+                            </th>
+                            <th>
+                                <select  id="estadio" class="form-control custom-select" name="estadio"  >
+                                    <option ></option>
+                                </select>
+                            </th>
+                            <th>
+                                <select [(ngModel)]="jornada.estatus" id="estatus" class="form-control custom-select" name="estatus"  >
+                                    <option [value]="jornada.estatus">{{jornada.estatus}}</option>
+                                </select>
+                            </th>
+                            <th>
+                                <input type="date" id="date-format" class="form-control" placeholder="Saturday 24 June 2017 - 21:44" data-dtp="dtp_s2qCw">
+                            </th>
+                            <th>
+                                <input type="date" id="date-format" class="form-control" placeholder="Saturday 24 June 2017 - 21:44" data-dtp="dtp_s2qCw">
+                            </th>
+                            <th>
+                                <button [routerLink]="['/jornada',jornada._id]" class="btn btn-primary">
+                                    <i class="fa fa-save"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

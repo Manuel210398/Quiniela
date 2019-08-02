@@ -17,6 +17,8 @@ import { PartidosComponent } from './partidos/partidos.component';
 import { PartidoComponent } from './partidos/partido.component';
 import { QuinielaComponent } from './quiniela/quiniela.component';
 
+import { JornadasComponent } from './jornadas/jornadas.component';
+import { JornadaComponent } from './jornadas/jornada.component';
 @NgModule({
     declarations: [
         DashboardComponent,
@@ -29,8 +31,9 @@ import { QuinielaComponent } from './quiniela/quiniela.component';
         EstadiosComponent,
         PartidosComponent,
         PartidoComponent,
-        QuinielaComponent
-        
+        QuinielaComponent,
+        JornadasComponent,
+        JornadaComponent
     ],
     exports: [
         DashboardComponent,
@@ -43,6 +46,7 @@ import { QuinielaComponent } from './quiniela/quiniela.component';
         FormsModule,
         ChartsModule,
         PipesModule
+
     ]
 })
 

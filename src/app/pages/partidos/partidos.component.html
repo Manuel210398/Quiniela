@@ -4,8 +4,6 @@
         <div class="alert alert-warning text-center ">
             <strong>Cargando</strong>
             <br>
-
-            
             <i class="fa fa-refresh fa-spin fa-2x"></i>
             <br>
             <span>Cargando Informaci&oacute;n</span>
@@ -21,7 +19,6 @@
                         <button [routerLink]="['/partido','nuevo']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
                             <i class="fa fa-plus"> Crear Partido</i>
                         </button>
-
                 </div>
                 <h3 class="card-title">Seleccione la Jornada</h3>
                 <select (change)="cambioJornada( $event.target.value )" [(ngModel)]="jornadas._id" name="visitante" class="form-control" required>
