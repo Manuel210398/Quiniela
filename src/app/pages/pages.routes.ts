@@ -12,6 +12,7 @@ import { PartidoComponent } from './partidos/partido.component';
 import { QuinielaComponent } from './quiniela/quiniela.component';
 import { JornadasComponent } from './jornadas/jornadas.component';
 import { JornadaComponent } from './jornadas/jornada.component';
+import { TorneosComponent } from './torneos/torneos.component';
 
 const pagesRoutes: Routes = [
     {
@@ -29,6 +30,7 @@ const pagesRoutes: Routes = [
             {path: 'quiniela', component: QuinielaComponent , data: {titulo:'Mantenimineto Quiniela'}},
             {path: 'jornadas', component: JornadasComponent , data: {titulo:'Mantenimineto Jornadas'}},
             {path: 'jornada/:id', component: JornadaComponent , data: {titulo:'Mantenimineto Jornada'}},
+            {path: 'torneos', component: TorneosComponent , data: {titulo:'Mantenimineto Torneo'}},
             {path: '', redirectTo : '/dashboard', pathMatch: 'full'}
         ]
     }

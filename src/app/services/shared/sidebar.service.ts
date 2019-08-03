@@ -23,6 +23,7 @@ export class SidebarService {
         {titulo: 'Equipos', url: '/equipos'},
         {titulo: 'Estadios', url: '/estadios'},
         {titulo: 'Jornadas', url: '/jornadas'},
+        {titulo: 'Torneos', url: '/torneos'},
         {titulo: 'Resultados', url: '/quiniela'}
       ]
     },

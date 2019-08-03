@@ -1,4 +1,4 @@
-
+<script>    $('#date-format').bootstrapMaterialDatePicker({ format: 'dddd DD MMMM YYYY - HH:mm' });</script>
 <div class="row animated fadeIn" *ngIf="cargando">
         <div class="col-sm-12">
             <div class="alert alert-warning text-center ">
@@ -19,7 +19,14 @@
                         <i class="fa fa-plus"> Crear Partido</i>
                     </button>
             </div>
-            <h3 class="box-title m-b-0">Jornadas </h3>
+            <h3 class="card-title">Seleccione la Jornada</h3>
+            <select  name="visitante" class="form-control" required>
+                <option >
+                    
+                </option>
+            </select>
+            <br>
+            <br>
             <br>
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
@@ -28,7 +35,6 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Nombre Corto</th>
-                            <th>Torneo</th>
                             <th>Estatus</th>
                             <th>Fecha de Inicio</th>
                             <th>Fecha de Termino</th>
@@ -43,23 +49,22 @@
                                 <input [(ngModel)]="jornada.nombreCorto" name="nombrec" type="text" class="form-control"  placeholder="Nombre Cortor de la Jornada " required>
                             </th>
                             <th>
-                                <select  id="estadio" class="form-control custom-select" name="estadio"  >
-                                    <option ></option>
-                                </select>
-                            </th>
-                            <th>
                                 <select [(ngModel)]="jornada.estatus" id="estatus" class="form-control custom-select" name="estatus"  >
                                     <option [value]="jornada.estatus">{{jornada.estatus}}</option>
                                 </select>
                             </th>
                             <th>
-                                <input type="date" id="date-format" class="form-control" placeholder="Saturday 24 June 2017 - 21:44" data-dtp="dtp_s2qCw">
+                                   <!-- <label class="m-t-20">Default Material Date Picker</label>
+                                    <input type="text" class="form-control" placeholder="2017-06-04" id="mdate">
+                                    <label class="m-t-40">Default Material Date Timepicker</label>
+                                    <input type="text" id="date-format" class="form-control" placeholder="Saturday 24 June 2017 - 21:44">-->
+                                    <input type="date" id="date-format" class="form-control" placeholder="Saturday 24 June 2017 - 21:44" data-dtp="dtp_s2qCw">
                             </th>
                             <th>
                                 <input type="date" id="date-format" class="form-control" placeholder="Saturday 24 June 2017 - 21:44" data-dtp="dtp_s2qCw">
                             </th>
                             <th>
-                                <button [routerLink]="['/jornada',jornada._id]" class="btn btn-primary">
+                                <button [routerLink]="['/jornada',jornada._id]"class="btn btn-primary">
                                     <i class="fa fa-save"></i>
                                 </button>
                                 <button class="btn btn-danger">

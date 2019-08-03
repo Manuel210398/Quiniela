@@ -1,42 +1,48 @@
 <div class="row animated fadeIn">
     <div class="col-md-12">
         <div class="card card-body">
-            <h3 class="box-title m-b-0">Partido </h3>
+            <h3 class="box-title m-b-0">Jornada </h3>
             <br>
             <div class="row">
-                <div class="col-sm-12 col-xs-12">
+                <div class="col-sm-6 col-xs-6">
                     <form  #f="ngForm" ngNativeValidate (ngSubmit)="guardarPartido(f)">
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                Seleccione Equipo Anfitrion
-                                <th>
-                                    <input [(ngModel)]="jornada.nombre" name="nombre" type="text" class="form-control"  placeholder="Nombre de la Jornada " required>
-                                </th>
-                            </div>
-    
-                            <div class="form-group">
-                                Seleccione Equipo Visitante
-                                <input [(ngModel)]="jornada.nombreCorto" name="nombrec" type="text" class="form-control"  placeholder="Nombre Cortor de la Jornada " required>
-                            </div>
-    
-    
-                            <div class="form-group">
-                                Seleccione la Jornada
-                                <select  id="estadio" class="form-control custom-select" name="estadio"  >
-                                    <option ></option>
-                                </select>
-                            </div>
+                        
+
+                        <div class="form-group">
+                            Escriba el nombre de la Jornada
+                            <th>
+                                <input [(ngModel)]="jornada.nombre" name="nombre" type="text" class="form-control"  placeholder="Nombre de la Jornada " required>
+                            </th>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                Seleccione la Jornada
-                                <select  id="estadio" class="form-control custom-select" name="estadio"  >
-                                    <option ></option>
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            Seleccione el nombre corto de la Jornada
+                            <input [(ngModel)]="jornada.nombreCorto" name="nombrec" type="text" class="form-control"  placeholder="Nombre Cortor de la Jornada " required>
                         </div>
+
+
+                        <div class="form-group">
+                            Seleccione un Torneo
+                            <select  [(ngModel)]="jornada.torneo" id="torneo" class="form-control custom-select" name="estadio"  >
+                                <option *ngFor="let torneo of torneos"  [value]="torneo._id">{{torneo.nombre}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            Seleccione un Estatus
+                            <select disabled *ngIf="estado==false" id="estadio" class="form-control custom-select" name="estadio"  >
+                                <option >PENDIENTE</option>
+                            </select>
+
+                            <select *ngIf="estado==true" id="estadio" class="form-control custom-select" name="estadio"  >
+                                    <option >PENDIENTE</option>
+                                    <option >ACTUAL</option>
+                                    <option >JUGADA</option>
+                                    
+                            </select>
+                        </div>
+                        
 
 
                         <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
