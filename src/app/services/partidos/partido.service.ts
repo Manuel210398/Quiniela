@@ -70,9 +70,9 @@ export class PartidoService {
         Swal.fire('Partido Eliminado', 'Eliminado Correctamente', 'success');
       }));
   }
-  obtenerJornadas()
+  obtenerJornadas(torneo)
   {
-    let url = URL_SERVICIOS + '/jornada';
+    let url = URL_SERVICIOS + '/jornadas/' + torneo;
     return this.http.get(url);
   }
   obtenerPartidoporJornada(id:string)

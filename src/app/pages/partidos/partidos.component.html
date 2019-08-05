@@ -14,21 +14,21 @@
 <div class="row animated fadeIn" *ngIf="!cargando">
     <div class="col-12">
         <div class="card">
-            <div class="card-body">
-                <div class="text-right">
+            <div class="card-header">
+                <div class="card-title text-right">
                         <button [routerLink]="['/partido','nuevo']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
-                            <i class="fa fa-plus"> Crear Partido</i>
+                            <i class="fa fa-plus"></i> Crear Partido
                         </button>
                 </div>
                 <h3 class="card-title">Seleccione la Jornada</h3>
                 <select (change)="cambioJornada( $event.target.value )" [(ngModel)]="jornadas._id" name="visitante" class="form-control" required>
+                    <option [value]="'-1'">Seleccione una jornada</option>
                     <option *ngFor="let jornada of jornadas" [value]="jornada._id">
                         {{ jornada.nombre }}
                     </option>
                 </select>
-                <br>
-                <br>
-                <br>
+            </div>
+            <div class="card-body">
                 <table class="table table-hover">
                     <thead>
                         <tr>
