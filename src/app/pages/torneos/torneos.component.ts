@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Torneo } from 'src/models/torneo.model';
 import { TorneosService } from 'src/app/services/torneos/torneos.service';
 import Swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-torneos',
   templateUrl: './torneos.component.html',
   styles: []
 })
-export class TorneosComponent implements OnInit {
+export class TorneosComponent implements OnDestroy {
+ 
   torneos:Torneo[]=[];
   desde:number=0;
   totalRegistro:number=0;
-  constructor(public _torneosService: TorneosService) { }
+  subscriptionTorneo: Subscription;
+  constructor(public _torneosService: TorneosService ) { }
 
   ngOnInit() {
     this.obtenerTorneosPaginados();
@@ -103,5 +106,8 @@ export class TorneosComponent implements OnInit {
       this.torneos=torneos;
       //this.cargando=false;
     });
+  }
+  ngOnDestroy(){
+
   }
 }

@@ -1,10 +1,11 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, OnDestroy} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {JornadaService} from 'src/app/services/jornadas/jornada.service';
 import {Jornada} from 'src/models/jornada.model';
 import {TorneosService} from 'src/app/services/torneos/torneos.service';
 import {Torneo} from 'src/models/torneo.model';
 import {NgForm} from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 declare const jQuery: any;
 declare const $: any;
@@ -21,9 +22,14 @@ export class JornadaComponent implements OnInit, AfterViewInit {
   jornada: Jornada = new Jornada();
   torneos: Torneo[] = [];
   torneo: any;
-
+  subscriptionTorneo: Subscription;
   constructor(public router: Router, public _activatedRoute: ActivatedRoute, public _jornadaService: JornadaService
     , public _torneoService: TorneosService) {
+
+
+
+
+
     this._activatedRoute.params.subscribe(params => {
       let id = params['id'];
       this.torneo =  params['idTorneo'];
@@ -39,7 +45,7 @@ export class JornadaComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.cargarTorneos();
   }
-
+  
 
 
   cargarTorneos() {

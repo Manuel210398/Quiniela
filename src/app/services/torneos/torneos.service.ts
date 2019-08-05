@@ -5,12 +5,13 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { UsuarioService } from '../usuario/usuario.service';
 import { Torneo } from 'src/models/torneo.model';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TorneosService {
-
+  private subjectTorneo = new Subject<any>();
   constructor(public http: HttpClient, public router: Router,public _usuarioService: UsuarioService) { }
   obtenerTorneos()
   {
@@ -52,5 +53,14 @@ export class TorneosService {
     let url = URL_SERVICIOS + '/busqueda/coleccion/torneos/' + termino;
     return this.http.get(url)
       .pipe(map((resp: any) => resp.torneos));
+  }
+  setTorneo(id:string){
+    this.subjectTorneo.next(id);
+  }
+  clearTorneo(){
+    this.subjectTorneo.next();
+  }
+  getTorneo(): Observable<any> {
+    return this.subjectTorneo.asObservable();
   }
 }

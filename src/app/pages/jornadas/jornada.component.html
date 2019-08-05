@@ -52,7 +52,10 @@
 
                                 <div class="form-group">
                                     Seleccione la fecha de Culminacion 
-                                    <input [(ngModel)]="jornada.fin" type="date" id="date-format2" class="form-control"  data-dtp="dtp_s2qCw" name="fin">
+                                    <div class="input-group">
+                                        <input [(ngModel)]="jornada.fin" id="fin" class="form-control mydatepicker"  data-date-format="dd/mm/yyyy" name="fin">
+                                        <span class="input-group-addon"><i class="icon-calender"></i></span>
+                                    </div>  
                                 </div>
                                
                         </div>
