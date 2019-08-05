@@ -4,6 +4,7 @@ import { JornadaService } from 'src/app/services/jornadas/jornada.service';
 import { Jornada } from 'src/models/jornada.model';
 import { TorneosService } from 'src/app/services/torneos/torneos.service';
 import { Torneo } from 'src/models/torneo.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-jornada',
@@ -46,6 +47,22 @@ export class JornadaComponent implements OnInit {
       this.jornada=jornada.jornada;
       console.log(this.jornada);
     })
+  }
+  crearJornada(f:NgForm)
+  {
+    console.log(f.valid);
+    console.log(f.value);
+    if (f.invalid){
+      return;
+    }
+    this._jornadaService.crearJornada(this.jornada)
+    .subscribe((jornada)=>
+    {
+      this.jornada=jornada;
+      console.log(this.jornada);
+      this.jornada._id=jornada.jornada._id;
+       this.router.navigate(['/jornadas']);
+    });
   }
 
 }
