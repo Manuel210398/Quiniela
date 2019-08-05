@@ -4,6 +4,7 @@ import { Partido } from 'src/models/partidos.model';
 import { EquiposService } from 'src/app/services/equipos/equipos.service';
 import { Equipo } from 'src/models/equipo.model';
 import { Jornada } from 'src/models/jornada.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-partidos',
@@ -12,11 +13,17 @@ import { Jornada } from 'src/models/jornada.model';
 
 export class PartidosComponent implements OnInit {
   
-  constructor(public _partidoService: PartidoService,public _equipoService: EquiposService) { }
+  constructor(public _activatedRoute: ActivatedRoute, public _partidoService: PartidoService,public _equipoService: EquiposService) { }
   partidos:Partido[]=[];
   jornadas:Jornada[]=[];
   equipos:Equipo[]=[];
+  jornada: any = '';
   ngOnInit() {
+
+
+    this._activatedRoute.params.subscribe(params => {
+      this.jornada = params['idJornada'];
+    });
     this.obtenerPartidos();
     this.obtenerEquipos();
     this.cargarJornadas();
@@ -39,13 +46,16 @@ export class PartidosComponent implements OnInit {
     });
   }
   obtenerPartidos(){
-    this._partidoService.obtenerPartidos()
-    .subscribe((resp:any)=>
+    if (this.jornada)
     {
-      //console.log(resp);
-      this.partidos= resp.partidos;
-      console.log(this.partidos);
-    });
+      this._partidoService.obtenerPartidoporJornada(this.jornada)
+      .subscribe((resp:any)=>
+      {
+        //console.log(resp);
+        this.partidos= resp.partidos;
+        console.log(this.partidos);
+      });
+    }
   }
   guardarPartido(partido:Partido){
     this._partidoService.actualizarPartido(partido)
@@ -56,13 +66,18 @@ export class PartidosComponent implements OnInit {
     .subscribe(()=>this.obtenerPartidos());
   }
   cambioJornada(event) {
-    console.log(event);
-    this._partidoService.obtenerPartidoporJornada(event)
-    .subscribe(((resp:any)=>
+    if (this.jornada)
     {
-        this.partidos=resp.partidos;
-        console.log(this.partidos);
-    }));
+      console.log(event);
+      this.jornada=event;
+      this._partidoService.obtenerPartidoporJornada(event)
+      .subscribe(((resp:any)=>
+      {
+          this.partidos=resp.partidos;
+          console.log(this.partidos);
+      }));
+    }
+    
     
   }
 

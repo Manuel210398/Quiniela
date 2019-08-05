@@ -21,14 +21,20 @@ export class PartidoComponent implements OnInit {
   estadio:Estadio[]=[];
   equipo:Equipo = new Equipo('','','','','');
   equipo2:Equipo = new Equipo('','','','','');
+  jornada:any;
   constructor(public _estadioService: EstadioService,   public _equipoService: EquiposService, public _partidoService:PartidoService,
     public router:Router, public _activatedRoute:ActivatedRoute) {
       _activatedRoute.params.subscribe(params=>
         {
           let id= params['id'];
+          this.jornada =  params['idJornada'];
           if (id!=='nuevo')
           {
             this.cargarPartido(id);
+          }
+          else{
+            console.log(this.partido);
+            this.partido.jornada= this.jornada;
           }
         })
      }
@@ -36,6 +42,7 @@ export class PartidoComponent implements OnInit {
   ngOnInit() {
     this.cargarEquipos();
     this.cargarJornadas();
+    console.log(this.jornada);
   }
   cargarPartido(id:string)
   {
@@ -84,7 +91,7 @@ export class PartidoComponent implements OnInit {
       this.partido=partido;
       console.log(this.partido);
       this.partido._id=partido._id;
-      this.router.navigate(['/partido',partido._id]);
+      this.router.navigate(['/partidos',this.jornada]);
     });
     
   }

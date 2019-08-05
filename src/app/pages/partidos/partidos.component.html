@@ -13,22 +13,20 @@
 
 <div class="row animated fadeIn" *ngIf="!cargando">
     <div class="col-12">
-        <div class="card">
-            <div class="card-header">
+        <div class="card card-body">
                 <div class="card-title text-right">
-                        <button [routerLink]="['/partido','nuevo']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                        <button [routerLink]="['/partido','nuevo', jornada]" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
                             <i class="fa fa-plus"></i> Crear Partido
                         </button>
                 </div>
                 <h3 class="card-title">Seleccione la Jornada</h3>
-                <select (change)="cambioJornada( $event.target.value )" [(ngModel)]="jornadas._id" name="visitante" class="form-control" required>
-                    <option [value]="'-1'">Seleccione una jornada</option>
+                <select (change)="cambioJornada( $event.target.value )" [(ngModel)]="jornada" name="jornada" class="form-control" required>
+                    <option  [value]="''">Seleccione una jornada</option>
                     <option *ngFor="let jornada of jornadas" [value]="jornada._id">
                         {{ jornada.nombre }}
                     </option>
                 </select>
-            </div>
-            <div class="card-body">
+                <br><br>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -64,7 +62,7 @@
                             </th>
                             <th>
 
-                            <button  [routerLink]="['/partido',partido._id]" class="btn btn-primary">
+                            <button  [routerLink]="['/partido',partido._id, jornada]" class="btn btn-primary">
                                     <i class="fa fa-edit"></i>
                                 </button>
                              <button (click)="eliminarPartido(partido)" class="btn btn-danger">
@@ -73,7 +71,6 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
         </div>
     </div>
 </div>

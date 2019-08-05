@@ -25,12 +25,17 @@ const pagesRoutes: Routes = [
             {path: 'usuarios', component: UsuariosComponent , data: {titulo:'Mantenimiento de Usuarios'}},
             {path: 'equipos', component: EquiposComponent , data: {titulo:'Mantenimineto de Equipos'}},
             {path: 'estadios', component: EstadiosComponent , data: {titulo:'Mantenimineto de Estadios'}},
-            {path: 'partidos', component: PartidosComponent , data: {titulo:'Mantenimineto de Partidos'}},
-            {path: 'partido/:id', component: PartidoComponent , data: {titulo:'Mantenimineto Partido'}},
             {path: 'quiniela', component: QuinielaComponent , data: {titulo:'Mantenimineto Quiniela'}},
+
+
+            {path: 'partidos', component: PartidosComponent , data: {titulo:'Mantenimineto de Partidos'}},
+            {path: 'partidos/:idJornada', component: PartidosComponent , data: {titulo:'Mantenimineto de Partidos'}},
+            {path: 'partido/:id', component: PartidoComponent , data: {titulo:'Mantenimineto Partido'}},
+            {path: 'partido/:id/:idJornada', component: PartidoComponent , data: {titulo:'Mantenimineto Partido'}},
+           
+
             {path: 'jornadas', component: JornadasComponent , data: {titulo:'Mantenimineto Jornadas'}},
             {path: 'jornadas/:idTorneo', component: JornadasComponent , data: {titulo:'Mantenimineto Jornadas'}},
-
             {path: 'jornada/:id', component: JornadaComponent , data: {titulo:'Mantenimineto Jornada'}},
             {path: 'jornada/:id/:idTorneo', component: JornadaComponent , data: {titulo:'Mantenimineto Jornada'}},
 
