@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {JornadaService} from 'src/app/services/jornadas/jornada.service';
 import {Jornada} from 'src/models/jornada.model';
@@ -6,12 +6,17 @@ import {TorneosService} from 'src/app/services/torneos/torneos.service';
 import {Torneo} from 'src/models/torneo.model';
 import {NgForm} from '@angular/forms';
 
+declare const jQuery: any;
+declare const $: any;
+
+
 @Component({
   selector: 'app-jornada',
   templateUrl: './jornada.component.html',
   styles: []
 })
-export class JornadaComponent implements OnInit {
+
+export class JornadaComponent implements OnInit, AfterViewInit {
   estado: boolean = false;
   jornada: Jornada = new Jornada();
   torneos: Torneo[] = [];
@@ -34,6 +39,8 @@ export class JornadaComponent implements OnInit {
   ngOnInit() {
     this.cargarTorneos();
   }
+
+
 
   cargarTorneos() {
     this._torneoService.obtenerTorneos()
@@ -63,8 +70,17 @@ export class JornadaComponent implements OnInit {
         this.jornada = jornada;
         console.log(this.jornada);
         this.jornada._id = jornada.jornada._id;
-        this.router.navigate(['/jornadas']);
+        this.router.navigate(['/jornadas', this.torneo]);
       });
+  }
+
+  ngAfterViewInit(): void {
+    jQuery('.mydatepicker, #datepicker').datepicker();
+    jQuery('#datepicker-autoclose').datepicker({
+      autoclose: true,
+      todayHighlight: true
+    });
+
   }
 
 }

@@ -77,7 +77,7 @@ export class PartidoService {
   }*/
   obtenerJornadas()
   {
-    let url = URL_SERVICIOS + '/jornadas/' ;
+    let url = URL_SERVICIOS + '/jornada/' ;
     return this.http.get(url);
   }
   obtenerPartidoporJornada(id:string)
