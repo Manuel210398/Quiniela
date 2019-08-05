@@ -29,8 +29,12 @@ const pagesRoutes: Routes = [
             {path: 'partido/:id', component: PartidoComponent , data: {titulo:'Mantenimineto Partido'}},
             {path: 'quiniela', component: QuinielaComponent , data: {titulo:'Mantenimineto Quiniela'}},
             {path: 'jornadas', component: JornadasComponent , data: {titulo:'Mantenimineto Jornadas'}},
+            {path: 'jornadas/:idTorneo', component: JornadasComponent , data: {titulo:'Mantenimineto Jornadas'}},
+
             {path: 'jornada/:id', component: JornadaComponent , data: {titulo:'Mantenimineto Jornada'}},
-            {path: 'torneos', component: TorneosComponent , data: {titulo:'Mantenimineto Torneo'}},
+            {path: 'jornada/:id/:idTorneo', component: JornadaComponent , data: {titulo:'Mantenimineto Jornada'}},
+
+          {path: 'torneos', component: TorneosComponent , data: {titulo:'Mantenimineto Torneo'}},
             {path: '', redirectTo : '/dashboard', pathMatch: 'full'}
         ]
     }

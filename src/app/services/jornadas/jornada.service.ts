@@ -45,11 +45,12 @@ export class JornadaService {
     }
 
   }
-  obtenerJornadasPorPartido(id:string)
+  obtenerJornadasPorTorneo(id:string)
   {
     let url = URL_SERVICIOS + '/jornada/torneo/'+ id;
     return this.http.get(url);
   }
+
   eliminarJornada(id:string)
   {
     let url = URL_SERVICIOS + '/jornada/'+ id;

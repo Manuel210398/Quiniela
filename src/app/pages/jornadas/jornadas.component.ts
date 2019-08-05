@@ -7,6 +7,7 @@ import { Jornada } from 'src/models/jornada.model';
 import { JornadaService } from 'src/app/services/jornadas/jornada.service';
 import { TorneosService } from 'src/app/services/torneos/torneos.service';
 import { Torneo } from 'src/models/torneo.model';
+import {ActivatedRoute} from '@angular/router';
 @Component({
   selector: 'app-jornadas',
   templateUrl: './jornadas.component.html',
@@ -15,22 +16,37 @@ import { Torneo } from 'src/models/torneo.model';
 export class JornadasComponent implements OnInit {
   jordanas:Jornada[]=[];
   torneos:Torneo[]=[];
-  constructor(public _EquipoService: EquiposService, public _partidoService: PartidoService, 
+  torneo: any = '';
+
+  constructor(
+    public _activatedRoute: ActivatedRoute,
+    public _EquipoService: EquiposService,
     public _jornadaService: JornadaService, public _torneoService: TorneosService) { }
 
   ngOnInit() {
+
+    this._activatedRoute.params.subscribe(params => {
+      this.torneo = params['idTorneo'];
+
+    });
+
     this.cargarJornadas();
     this.cargarTorneos();
   }
+
   cargarJornadas()
   {
-    this._partidoService.obtenerJornadas()
-    .subscribe((jordanas:any)=>
-    {
-      this.jordanas=jordanas.jornadas;
-      console.log(this.jordanas);
-    });
+    if(this.torneo){
+      this._jornadaService.obtenerJornadasPorTorneo(this.torneo)
+        .subscribe((jordanas:any)=>
+        {
+          this.jordanas = jordanas.jornadas;
+          console.log(this.jordanas);
+        });
+    }
+
   }
+
   cargarTorneos()
   {
     this._torneoService.obtenerTorneos()
@@ -40,9 +56,11 @@ export class JornadasComponent implements OnInit {
       console.log(this.torneos);
     });
   }
+
   cambioTorneo(event) {
     console.log(event);
-    this._jornadaService.obtenerJornadasPorPartido(event)
+    this.torneo = event;
+    this._jornadaService.obtenerJornadasPorTorneo(event)
     .subscribe((resp:any)=>
     {
       this.jordanas=resp.jornadas;
