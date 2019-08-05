@@ -19,6 +19,7 @@ import { QuinielaComponent } from './quiniela/quiniela.component';
 
 import { JornadasComponent } from './jornadas/jornadas.component';
 import { JornadaComponent } from './jornadas/jornada.component';
+import { TorneosComponent } from './torneos/torneos.component';
 @NgModule({
     declarations: [
         DashboardComponent,
@@ -33,7 +34,8 @@ import { JornadaComponent } from './jornadas/jornada.component';
         PartidoComponent,
         QuinielaComponent,
         JornadasComponent,
-        JornadaComponent
+        JornadaComponent,
+        TorneosComponent
     ],
     exports: [
         DashboardComponent,

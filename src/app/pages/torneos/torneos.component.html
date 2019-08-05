@@ -1,0 +1,70 @@
+<div class="row animated fadeIn">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <input #input (keyup)="buscarEquipo(input.value)"  type="text" class="form-control" placeholder="Buscar torneos....">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row animated fadeIn" *ngIf="cargando">
+        <div class="col-sm-12">
+            <div class="alert alert-warning text-center ">
+                <strong>Cargando</strong>
+                <br>
+    
+                
+                <i class="fa fa-refresh fa-spin fa-2x"></i>
+                <br>
+                <span>Cargando Informacion</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row animated fadeIn" *ngIf="!cargando">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-right">
+                        <button (click)="crearTorneo()" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                            <i class="fa fa-plus"> Crear Torneo</i>
+                        </button>
+                    </div>
+                    <h3 class="card-title">Equipos Registrados(<small>{{totalRegistro}}</small>)</h3>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nombre del Torneo</th>
+                                <th>Nombre la Liga</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let torneo of torneos">
+                                <th>
+                                    <input [(ngModel)]="torneo.nombre" name="torneo" type="text" class="form-control"  placeholder="Nombre del Equipo " required>
+                                </th>
+                                <th>
+                                    <input [(ngModel)]="torneo.liga" name="liga" type="text" class="form-control"  placeholder="Nombre del Alias " required>
+                                </th>
+                                <th>
+                                    <button  (click)="guardarTorneo(torneo)" class="btn btn-primary">
+                                        <i class="fa fa-save"></i>
+                                    </button>
+                                    <button (click)="borrarTorneo(torneo)" class="btn btn-danger">
+                                        <i class="fa fa-trash-o"></i>
+                                    </button>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+    
+                    <button (click)="cambiarDesde(-5)" class="btn btn-secondary">Anteriores</button>
+                    <button (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
