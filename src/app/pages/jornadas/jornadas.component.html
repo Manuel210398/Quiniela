@@ -21,7 +21,7 @@
             </div>
             <h3 class="card-title">Seleccione la Jornada</h3>
 
-            <select (change)="cambioTorneo( $event.target.value )" name="torneo"  class="form-control" [(ngModel)]="torneo" required>
+            <select (change)="cambioTorneo( $event.target.value )" name="torneo"  class="form-control selectpicker" [(ngModel)]="torneo" required>
               <option [value]="''">Seleccione una jornada</option>
               <option *ngFor="let torneo of torneos" [value]="torneo._id">
                     {{torneo.nombre}}
