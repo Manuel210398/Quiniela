@@ -58,7 +58,7 @@ export class PartidoService {
     return this.http.put(url, partido)
       .pipe(map((resp: any) => {
         resp.partido;
-        Swal.fire('Estadio Actualizado', 'El Partido se he Actualizado Correctamente', 'success');
+        Swal.fire('Partido Actualizado', 'El partido se he actualizado correctamente', 'success');
       }));
   }
 

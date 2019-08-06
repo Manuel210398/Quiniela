@@ -19,7 +19,7 @@
                             <i class="fa fa-plus"></i> Crear Partido
                         </button>
                 </div>
-                <h3 class="card-title">Seleccione la Jornada</h3>
+                <h3 class="card-title">Partidos</h3>
                 <select (change)="cambioJornada( $event.target.value )" [(ngModel)]="jornada" name="jornada" class="form-control" required>
                     <option  [value]="''">Seleccione una jornada</option>
                     <option *ngFor="let jornada of jornadas" [value]="jornada._id">
@@ -30,7 +30,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Anfitri&oacute;n</th>
+                            <th>Local</th>
                             <th></th>
                             <th>Visitante</th>
                             <th></th>
@@ -42,32 +42,34 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let partido of partidos">
-                            <th>
+                            <td>
+                              <img [src]="partido.anfitrion?.img | imagen:'equipos'" class="img-50 img-circle pointer">
+                            </td>
+                            <td>
                                 {{partido.anfitrion?.nombre}}
-                            </th>
-                            <th>
-                                <img [src]="partido.anfitrion?.img | imagen:'equipos'" class="img-50 img-circle pointer">
-                            </th>
-                            <th>
+                            </td>
+                            <td>
+                              <img [src]="partido.visitante?.img | imagen:'equipos'" class="img-50 img-circle pointer">
+                            </td>
+                            <td>
                                 {{partido.visitante?.nombre}}
-                            </th>
-                            <th>
-                                <img [src]="partido.visitante?.img | imagen:'equipos'" class="img-50 img-circle pointer">
-                            </th>
-                            <th>
-                                {{partido.fecha | date}}
-                            </th>
-                            <th>
-                                {{partido.estatus}}
-                            </th>
-                            <th>
+                            </td>
 
-                            <button  [routerLink]="['/partido',partido._id, jornada]" class="btn btn-primary">
-                                    <i class="fa fa-edit"></i>
-                                </button>
-                             <button (click)="eliminarPartido(partido)" class="btn btn-danger">
-                                <i class="fa fa-trash-o"></i>
-                            </button></th>
+                            <td>
+                                {{partido.fecha | date}}
+                            </td>
+                            <td>
+                                {{partido.estatus}}
+                            </td>
+                            <td>
+
+                              <button  [routerLink]="['/partido',partido._id, jornada]" class="btn btn-primary">
+                                      <i class="fa fa-edit"></i>
+                              </button>
+                              <button (click)="eliminarPartido(partido)" class="btn btn-danger">
+                                  <i class="fa fa-trash-o"></i>
+                              </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
