@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import Swal from 'sweetalert2';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { EquiposService } from 'src/app/services/equipos/equipos.service';
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './jornadas.component.html',
   styles: []
 })
-export class JornadasComponent implements OnInit {
+export class JornadasComponent implements OnInit, OnDestroy{
   jordanas:Jornada[]=[];
   torneos:Torneo[]=[];
   torneo: any = '';
@@ -28,7 +28,7 @@ export class JornadasComponent implements OnInit {
     this.cargarTorneos();
     this.subscriptionTorneo = this._torneoService.getTorneo().subscribe(torneo=>
       {
-        console.log('cambie Torneo:'+torneo)
+        console.log('cambie Torneo en jornadas:'+torneo)
         if (torneo){
           this.torneo= torneo;
           this.cargarJornadas();
@@ -37,12 +37,11 @@ export class JornadasComponent implements OnInit {
           console.log('no');
         }
       });
-
+      this.torneo= this._torneoService.getTorneo();
     this._activatedRoute.params.subscribe(params => {
       this.torneo = params['idTorneo'];
-
+      console.log('cambie torneo por ROUTER'+this.torneo);
     });
-    this.cargarTorneos();
   }
   
   cargarJornadas()

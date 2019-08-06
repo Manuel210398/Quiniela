@@ -5,13 +5,14 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { UsuarioService } from '../usuario/usuario.service';
 import { Torneo } from 'src/models/torneo.model';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
+import { Jornada } from 'src/models/jornada.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TorneosService {
-  private subjectTorneo = new Subject<any>();
+  private subjectTorneo = new BehaviorSubject<any>('');
   constructor(public http: HttpClient, public router: Router,public _usuarioService: UsuarioService) { }
   obtenerTorneos()
   {
@@ -58,9 +59,12 @@ export class TorneosService {
     this.subjectTorneo.next(id);
   }
   clearTorneo(){
-    this.subjectTorneo.next();
+    this.subjectTorneo.next('');
   }
   getTorneo(): Observable<any> {
     return this.subjectTorneo.asObservable();
-  }
+  } 
+  getTorneoValue(): Observable<any> {
+    return this.subjectTorneo.getValue();
+  } 
 }

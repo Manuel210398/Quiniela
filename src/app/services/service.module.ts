@@ -13,8 +13,7 @@ import {ModalUploadService} from '../components/modal-upload/modal-upload.servic
     [
       SettingsService,
       SharedService, SidebarService, ServiceModule, UsuarioService, LoginGuardGuard, SubirArchivoService, ModalUploadService
-    ],
-  declarations: []
+    ]
 })
 export class ServiceModule {
 }

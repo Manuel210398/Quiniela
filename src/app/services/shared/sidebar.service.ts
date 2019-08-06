@@ -24,6 +24,7 @@ export class SidebarService {
         {titulo: 'Estadios', url: '/estadios'},
         {titulo: 'Jornadas', url: '/jornadas'},
         {titulo: 'Torneos', url: '/torneos'},
+        {titulo: 'Quinielas', url: '/quinielas'},
         {titulo: 'Resultados', url: '/resultados'}
       ]
     },
