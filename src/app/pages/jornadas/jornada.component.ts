@@ -17,7 +17,7 @@ declare const $: any;
   styles: []
 })
 
-export class JornadaComponent implements OnInit, AfterViewInit {
+export class JornadaComponent implements OnInit, AfterViewInit, OnDestroy  {
   estado: boolean = false;
   jornada: Jornada = new Jornada();
   torneos: Torneo[] = [];
@@ -40,14 +40,21 @@ export class JornadaComponent implements OnInit, AfterViewInit {
         this.jornada.torneo = this.torneo;
       }
     });
+    this.subscriptionTorneo = this._torneoService.getTorneo().subscribe(torneo=>
+      {
+        console.log('cambie Torneo en jornada:'+torneo)
+        if (torneo){
+          this.torneo= torneo;
+        }
+        else{
+          console.log('no');
+        }
+      });
   }
 
   ngOnInit() {
     this.cargarTorneos();
   }
-  
-
-
   cargarTorneos() {
     this._torneoService.obtenerTorneos()
       .subscribe((resp: any) => {
@@ -87,6 +94,10 @@ export class JornadaComponent implements OnInit, AfterViewInit {
       todayHighlight: true
     });
 
+  }
+  ngOnDestroy()
+  {
+    this.subscriptionTorneo.unsubscribe();
   }
 
 }

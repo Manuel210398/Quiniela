@@ -1,0 +1,69 @@
+
+<div class="row animated fadeIn" *ngIf="cargando">
+    <div class="col-sm-12">
+        <div class="alert alert-warning text-center ">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Cargando Informacion</span>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-right">
+                    <button [routerLink]="['/quinielaUnitaria','nuevo',torneo]"type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                        <i class="fa fa-plus"> Crear Quiniela</i>
+                    </button>
+                </div>
+                <h3 class="card-title">Quinielas Registrados(<small>{{totalRegistro}}</small>)</h3>
+                <br>
+                <select (change)="cambioTorneo( $event.target.value )" name="torneo"  class="form-control" [(ngModel)]="torneo" required>
+                        <option [value]="''">Seleccione una jornada</option>
+                        <option *ngFor="let torneo of torneos" [value]="torneo._id">
+                                {{torneo.nombre}}
+                        </option>
+                </select>
+                <br><br><br>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Nombre de la Quiniela</th>
+                            <th>Dueño</th>
+                            <th>Torneo</th>
+                            <th>Participantes</th>
+                            <th>Estatus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let quiniela of quinielas">
+                            <th>
+                                <img [src]="quiniela.img | imagen:'equipos'" class="img-50 img-circle pointer">
+                            </th>
+                            <th>
+                                <input [(ngModel)]="quiniela.nombre" name="liga" type="text" class="form-control"  placeholder="Nombre del Alias " required>
+                            </th>
+                            <th>
+                                <button [routerLink]="['/quinielaUnitaria',quiniela._id, torneo]" class="btn btn-primary">
+                                    <i class="fa fa-save"></i>
+                                </button>
+                                <button (click)="borrarTorneo(torneo)" class="btn btn-danger">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button (click)="cambiarDesde(-5)" class="btn btn-secondary">Anteriores</button>
+                <button (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>
+            </div>
+        </div>
+    </div>
+</div>
+

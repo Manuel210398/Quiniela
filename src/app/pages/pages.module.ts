@@ -21,6 +21,9 @@ import { JornadasComponent } from './jornadas/jornadas.component';
 import { JornadaComponent } from './jornadas/jornada.component';
 import { TorneosComponent } from './torneos/torneos.component';
 import {ResultadosComponent} from './resultados/resultados.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
+import { QuinielasComponent } from './quinielas/quinielas.component';
+import { QuinielaUnitariaComponent } from './quinielas/quiniela-unitaria.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +41,10 @@ import {ResultadosComponent} from './resultados/resultados.component';
         QuinielaComponent,
         JornadasComponent,
         JornadaComponent,
-        TorneosComponent
+        TorneosComponent,
+        BusquedaComponent,
+        QuinielasComponent,
+        QuinielaUnitariaComponent
     ],
     exports: [
         DashboardComponent,

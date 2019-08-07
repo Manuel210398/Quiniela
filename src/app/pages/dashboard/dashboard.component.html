@@ -1,1 +1,29 @@
-<p>dashboard works!</p>
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <select (change)="cambioTorneo( $event.target.value )" name="torneo"  class="form-control" [(ngModel)]="torneo" required>
+                    <option [value]="''">Seleccione una jornada</option>
+                    <option *ngFor="let torneo of torneos" [value]="torneo._id">
+                          {{torneo.nombre}}
+                      </option>
+                  </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn">
+    <div class="col-md-12">
+        <div class="card card-body">
+            <div class="text-right">
+                <button [routerLink]="['/jornada','nuevo',torneo]" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                    <i class="fa fa-plus"></i> Crear Quiniela
+                </button>
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+

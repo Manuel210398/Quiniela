@@ -14,6 +14,9 @@ import { JornadasComponent } from './jornadas/jornadas.component';
 import { JornadaComponent } from './jornadas/jornada.component';
 import { TorneosComponent } from './torneos/torneos.component';
 import {ResultadosComponent} from './resultados/resultados.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
+import { QuinielasComponent } from './quinielas/quinielas.component';
+import { QuinielaUnitariaComponent } from './quinielas/quiniela-unitaria.component';
 
 const pagesRoutes: Routes = [
     {
@@ -22,7 +25,10 @@ const pagesRoutes: Routes = [
         children:[
             {path: 'dashboard', component: DashboardComponent, data: {titulo:'Dashboard'}},
             {path: 'account-settings', component: AccountSettingsComponent , data: {titulo:'Ajustes del Tema'}},
-            {path: 'profile', component: ProfileComponent , data: {titulo:'Perfil de Usuario'}},           
+            {path: 'profile', component: ProfileComponent , data: {titulo:'Perfil de Usuario'}},    
+            {path: 'busqueda/:termino', component: BusquedaComponent , data: {titulo:'Buscador'}},                  
+            
+            
             {path: 'usuarios', component: UsuariosComponent , data: {titulo:'Mantenimiento de Usuarios'}},
             {path: 'equipos', component: EquiposComponent , data: {titulo:'Mantenimiento de Equipos'}},
             {path: 'estadios', component: EstadiosComponent , data: {titulo:'Mantenimiento de Estadios'}},
@@ -40,6 +46,13 @@ const pagesRoutes: Routes = [
             {path: 'jornadas/:idTorneo', component: JornadasComponent , data: {titulo:'Mantenimiento Jornadas'}},
             {path: 'jornada/:id', component: JornadaComponent , data: {titulo:'Mantenimiento Jornada'}},
             {path: 'jornada/:id/:idTorneo', component: JornadaComponent , data: {titulo:'Mantenimiento Jornada'}},
+
+            {path: 'quinielas', component: QuinielasComponent , data: {titulo:'Mantenimiento Quinielas'}},
+            {path: 'quinielas/:idTorneo', component: QuinielasComponent , data: {titulo:'Mantenimiento Jornadas'}},
+            {path: 'quinielaUnitaria/:id', component: QuinielaUnitariaComponent , data: {titulo:'Mantenimiento Jornada'}},
+            {path: 'quinielaUnitaria/:id/:idTorneo', component: QuinielaUnitariaComponent , data: {titulo:'Mantenimiento Jornada'}},
+
+
 
           {path: 'torneos', component: TorneosComponent , data: {titulo:'Mantenimiento Torneo'}},
             {path: '', redirectTo : '/dashboard', pathMatch: 'full'}

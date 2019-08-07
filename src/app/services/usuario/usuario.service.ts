@@ -136,4 +136,9 @@ export class UsuarioService {
     let url = URL_SERVICIOS + '/usuario/' + usuario._id;
     url += '?token=' + this.token;
   }
+  obtenerUsuarioSinPaginacion()
+  {
+    let url= URL_SERVICIOS + '/usuario/s';
+    return this.http.get(url);
+  }
 }
