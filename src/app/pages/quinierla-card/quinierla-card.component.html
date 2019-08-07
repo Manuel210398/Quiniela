@@ -1,18 +1,17 @@
-<div class="card" style="width: 20rem;">
+<div class="card border border-primary rounded" style="width: 20rem;">
 
-  <div class="card-header">
-    <h4 class="m-b-0">Estadio {{partido.anfitrion.estadio.nombre}}</h4>
+  <!--img class="card-img-top" src="/assets/images/big/img1.jpg" alt="Card image cap"-->
 
-  </div>
+  <div class="card-body center">
+    <h5 class="card-title">Estadio {{partido.anfitrion.estadio.nombre}}</h5>
 
-  <div class="card-body">
     <p
       class="card-text">{{partido.fecha | date :'dd/MMM/yyyy HH:mm' }} {{partido.fecha | amLocale:'es-MX' | amTimeAgo }}</p>
 
-    <div class="row">
-      <div class="col-4">
+    <div class="row ">
+      <div class="col-4 ">
         <!--img class="card-img-top img-responsive" src="partido.anfitrion.image" alt="Card image cap"-->
-        <div class="column">
+        <div class="column" fxLayoutAlign="start center" >
           <img [src]="partido.anfitrion?.img | imagen:'equipos'" class="img-50 img-circle pointer">
 
           {{partido.anfitrion.nombre}}
@@ -20,22 +19,26 @@
 
         <input type="number" min="0" max="30" class="form-control" id="pronosticoLocal" placeholder="0" required>
       </div>
-      <div class="col-2">
-        VS
+      <div class="col-4 ">
+        <div class="m-t-30  text-center" >VS</div>
       </div>
       <div class="col-4">
-        <div class="column">
+        <div class="column center">
           <img [src]="partido.visitante?.img | imagen:'equipos'" class="img-50 img-circle pointer">
 
           {{partido.visitante.nombre}}
         </div>
         <input type="number" min="0" max="30" class="form-control" id="pronosticoVisitante" placeholder="0" required>
       </div>
-      <div class="col-12">
-        <a href="#" class="btn btn-inverse">Go somewhere</a>
 
-      </div>
     </div>
+    <div class="row center border" >
+      <div class=" border" >
+        <a href="#" class="btn btn-inverse">Enviar</a></div>
+
+
+    </div>
+
   </div>
 </div>
 
