@@ -1,29 +1,41 @@
+<div class="card" style="width: 20rem;">
 
+  <div class="card-header">
+    <h4 class="m-b-0">Estadio {{partido.anfitrion.estadio.nombre}}</h4>
 
-<div class="col-md-4">
-    <div class="card bg-light mb-3 ">
-        <div class="card-body"  align="center">
-            <h4  class="card-title">Partido ALGO</h4>
-            <div class="row">
-                <div class="col-6">
-                    <img class="card-img-top img-responsive" src="../assets/images/big/img1.jpg" alt="Card image cap">
-                    <br>
-                    <br>
-                    Equipo UNO
-                    <br>
-                    <input type="number" min="0" max="30" class="form-control" id="pronosticoAnfitrion" placeholder="Goles local" required>
-                </div>
-                <div class="col-6">
-                    <img class="card-img-top img-responsive" src="../assets/images/big/img1.jpg" alt="Card image cap">
-                    <br>
-                    <br>
-                    Equipo DOS
-                    <br>
-                    <input  type="number" min="0" max="30" class="form-control" id="pronosticoAnfitrion" placeholder="Goles local" required>
-                </div>
-            </div>
-            <br>
-            <a  href="#" class="btn btn-primary">Enviar Pronostico</a>
+  </div>
+
+  <div class="card-body">
+    <p
+      class="card-text">{{partido.fecha | date :'dd/MMM/yyyy HH:mm' }} {{partido.fecha | amLocale:'es-MX' | amTimeAgo }}</p>
+
+    <div class="row">
+      <div class="col-4">
+        <!--img class="card-img-top img-responsive" src="partido.anfitrion.image" alt="Card image cap"-->
+        <div class="column">
+          <img [src]="partido.anfitrion?.img | imagen:'equipos'" class="img-50 img-circle pointer">
+
+          {{partido.anfitrion.nombre}}
         </div>
+
+        <input type="number" min="0" max="30" class="form-control" id="pronosticoLocal" placeholder="0" required>
+      </div>
+      <div class="col-2">
+        VS
+      </div>
+      <div class="col-4">
+        <div class="column">
+          <img [src]="partido.visitante?.img | imagen:'equipos'" class="img-50 img-circle pointer">
+
+          {{partido.visitante.nombre}}
+        </div>
+        <input type="number" min="0" max="30" class="form-control" id="pronosticoVisitante" placeholder="0" required>
+      </div>
+      <div class="col-12">
+        <a href="#" class="btn btn-inverse">Go somewhere</a>
+
+      </div>
     </div>
+  </div>
 </div>
+

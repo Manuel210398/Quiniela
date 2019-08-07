@@ -30,9 +30,12 @@ export class JornadasComponent implements OnInit, OnDestroy{
 
     this.torneo = this._torneoService.getTorneoValue();
 
+    console.log('traigo torneo de Subject:' + this.torneo)
+
+
     this.subscriptionTorneo = this._torneoService.getTorneo().subscribe(torneo =>
       {
-        console.log('cambie Torneo en jornadas:'+torneo)
+        console.log('cambie Torneo en jornadas:' + torneo)
         if (torneo !== ''){
           console.log('cambie torneo por subscriber'+this.torneo);
 
@@ -45,7 +48,7 @@ export class JornadasComponent implements OnInit, OnDestroy{
 
 
 
-      this._activatedRoute.params.subscribe(params => {
+      /*this._activatedRoute.params.subscribe(params => {
 
         let torneo = params['idTorneo'];
         if(torneo){
@@ -53,7 +56,7 @@ export class JornadasComponent implements OnInit, OnDestroy{
           console.log('cambie torneo por ROUTER'+this.torneo);
         }
 
-      });
+      });*/
   }
   
   cargarJornadas()

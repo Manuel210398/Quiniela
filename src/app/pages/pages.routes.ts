@@ -43,9 +43,9 @@ const pagesRoutes: Routes = [
            
 
             {path: 'jornadas', component: JornadasComponent , data: {titulo:'Mantenimiento Jornadas'}},
-            {path: 'jornadas/:idTorneo', component: JornadasComponent , data: {titulo:'Mantenimiento Jornadas'}},
+            {path: 'jornadas', component: JornadasComponent , data: {titulo:'Mantenimiento Jornadas'}},
             {path: 'jornada/:id', component: JornadaComponent , data: {titulo:'Mantenimiento Jornada'}},
-            {path: 'jornada/:id/:idTorneo', component: JornadaComponent , data: {titulo:'Mantenimiento Jornada'}},
+            //{path: 'jornada/:id/:idTorneo', component: JornadaComponent , data: {titulo:'Mantenimiento Jornada'}},
 
             {path: 'quinielas', component: QuinielasComponent , data: {titulo:'Mantenimiento Quinielas'}},
             {path: 'quinielas/:idTorneo', component: QuinielasComponent , data: {titulo:'Mantenimiento Jornadas'}},

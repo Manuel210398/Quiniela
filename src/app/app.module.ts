@@ -15,11 +15,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SettingsService } from './services/service.index';
 import { ServiceModule } from './services/service.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {SelectModule} from 'ng2-select';
+import { registerLocaleData } from '@angular/common';
+
+import locale_esMX from '@angular/common/locales/es-MX';
+registerLocaleData(locale_esMX, 'es-MX');
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,   
+    LoginComponent,
     RegisterComponent
   ],
   imports: [
@@ -30,8 +36,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     ServiceModule,
-    NoopAnimationsModule
-  ],
+    NoopAnimationsModule,
+    SelectModule
+
+],
   providers: [],
   bootstrap: [AppComponent]
 })

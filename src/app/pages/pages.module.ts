@@ -26,6 +26,7 @@ import { QuinielasComponent } from './quinielas/quinielas.component';
 import { QuinielaUnitariaComponent } from './quinielas/quiniela-unitaria.component';
 import {JornadaService} from '../services/jornadas/jornada.service';
 import {TorneosService} from '../services/torneos/torneos.service';
+import {MomentModule} from 'ngx-moment';
 
 import { QuinierlaCardComponent } from './quinierla-card/quinierla-card.component';
 
@@ -61,7 +62,8 @@ import { QuinierlaCardComponent } from './quinierla-card/quinierla-card.componen
         PAGES_ROUTES,
         FormsModule,
         ChartsModule,
-        PipesModule
+        PipesModule,
+        MomentModule
 
     ],
     providers: [
