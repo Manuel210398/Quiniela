@@ -15,10 +15,11 @@ import { Subscription } from 'rxjs';
   styles: []
 })
 export class JornadasComponent implements OnInit, OnDestroy{
-  jordanas:Jornada[]=[];
-  torneos:Torneo[]=[];
+  jordanas: Jornada[] = [];
+  torneos: Torneo[] = [];
   torneo: any = '';
   subscriptionTorneo: Subscription;
+
   constructor(
     public _activatedRoute: ActivatedRoute,
     public _EquipoService: EquiposService,
@@ -26,31 +27,42 @@ export class JornadasComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     this.cargarTorneos();
-    this.subscriptionTorneo = this._torneoService.getTorneo().subscribe(torneo=>
+
+    this.torneo = this._torneoService.getTorneoValue();
+
+    this.subscriptionTorneo = this._torneoService.getTorneo().subscribe(torneo =>
       {
         console.log('cambie Torneo en jornadas:'+torneo)
-        if (torneo){
-          this.torneo= torneo;
+        if (torneo !== ''){
+          console.log('cambie torneo por subscriber'+this.torneo);
+
+          this.torneo = torneo;
           this.cargarJornadas();
         }
-        else{
-          console.log('no');
-        }
+
       });
-      this.torneo= this._torneoService.getTorneo();
-    this._activatedRoute.params.subscribe(params => {
-      this.torneo = params['idTorneo'];
-      console.log('cambie torneo por ROUTER'+this.torneo);
-    });
+
+
+
+
+      this._activatedRoute.params.subscribe(params => {
+
+        let torneo = params['idTorneo'];
+        if(torneo){
+          this.torneo = torneo;
+          console.log('cambie torneo por ROUTER'+this.torneo);
+        }
+
+      });
   }
   
   cargarJornadas()
   {
     if(this.torneo){
       this._jornadaService.obtenerJornadasPorTorneo(this.torneo)
-        .subscribe((jordanas:any)=>
+        .subscribe((data:any)=>
         {
-          this.jordanas = jordanas.jornadas;
+          this.jordanas = data.jornadas;
           console.log(this.jordanas);
         });
     }
@@ -62,28 +74,29 @@ export class JornadasComponent implements OnInit, OnDestroy{
     this._torneoService.obtenerTorneos()
     .subscribe((resp:any)=>
     {
-      this.torneos= resp.torneos;
-      console.log(this.torneos);
+      this.torneos = resp.torneos;
+      //console.log(this.torneos);
       
     });
   }
 
-  cambioTorneo(event) {
+  cambioTorneo() {
 
-    if (this.torneo)
+    if (this.torneo && this.torneo !=='')
     {
       this._torneoService.setTorneo(this.torneo);
-      console.log(event);
-      this.torneo = event;
+      console.log(this.torneo);
+      //this.torneo = event;
       
-      this._jornadaService.obtenerJornadasPorTorneo(event)
-      .subscribe((resp:any)=>
+      this._jornadaService.obtenerJornadasPorTorneo(this.torneo)
+      .subscribe((resp: any)=>
       {
-        this.jordanas=resp.jornadas;
+        this.jordanas = resp.jornadas;
         console.log(this.jordanas);
       });
     }
   }
+
   eliminarJornada(jornada:Jornada){
     this._jornadaService.eliminarJornada(jornada._id)
     .subscribe(()=>{

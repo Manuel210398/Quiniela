@@ -6,14 +6,20 @@ import { Jornada } from 'src/models/jornada.model';
 import { UsuarioService } from '../usuario/usuario.service';
 import Swal from 'sweetalert2';
 import { map } from 'rxjs/operators';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JornadaService {
 
+  public subjectJornadas = new BehaviorSubject<any>([]);
+  public subjectJornada = new BehaviorSubject<any>(new Jornada());
+
+
   constructor(public http: HttpClient,
-    public router: Router,public _usuarioService: UsuarioService) { }
+        public router: Router,
+        public _usuarioService: UsuarioService) { }
 
 
   obtenerJornada(id:string)
@@ -57,4 +63,6 @@ export class JornadaService {
     url += '?token=' + this._usuarioService.token;
     return this.http.delete(url);
   }
+
+
 }

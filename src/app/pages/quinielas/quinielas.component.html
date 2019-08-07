@@ -17,12 +17,14 @@
             <div class="card-body">
                 <div class="text-right">
                     <button [routerLink]="['/quinielaUnitaria','nuevo',torneo]"type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
-                        <i class="fa fa-plus"> Crear Quiniela</i>
+                        <i class="fa fa-plus"></i> Crear Quiniela
                     </button>
                 </div>
                 <h3 class="card-title">Quinielas Registrados(<small>{{totalRegistro}}</small>)</h3>
                 <br>
-                <select (change)="cambioTorneo( $event.target.value )" name="torneo"  class="form-control" [(ngModel)]="torneo" required>
+                <select (change)="cambioTorneo( $event.target.value )" name="torneo"
+                        data-style="btn-info btn-outline-info"
+                        class="form-control selectpicker m-b-20 m-r-10" [(ngModel)]="torneo" required>
                         <option [value]="''">Seleccione una jornada</option>
                         <option *ngFor="let torneo of torneos" [value]="torneo._id">
                                 {{torneo.nombre}}

@@ -19,17 +19,24 @@
                         <i class="fa fa-plus"></i> Crear Jornada
                     </button>
             </div>
-            <h3 class="card-title">Seleccione la Jornada</h3>
-
-            <select (change)="cambioTorneo( $event.target.value )" name="torneo"  class="form-control selectpicker" [(ngModel)]="torneo" required>
+          <div>
+            <h3 class="card-title">Jornadas</h3>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-xs-12">
+            {{torneos|json}} torneo:{{torneo}}
+            <select (change)="cambioTorneo(  )" id="cmbTorneo"  class="selectpicker m-b-20 m-r-10" [(ngModel)]="torneo" data-style="btn-info btn-outline-info">
               <option [value]="''">Seleccione una jornada</option>
               <option *ngFor="let torneo of torneos" [value]="torneo._id">
-                    {{torneo.nombre}}
-                </option>
+                {{torneo.nombre}}
+              </option>
             </select>
-            <br>
-            <br>
-            <br>
+            </div>
+          </div>
+
+
+
+
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
                 <table class="table table-hover">

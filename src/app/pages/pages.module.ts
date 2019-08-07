@@ -24,6 +24,8 @@ import {ResultadosComponent} from './resultados/resultados.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { QuinielasComponent } from './quinielas/quinielas.component';
 import { QuinielaUnitariaComponent } from './quinielas/quiniela-unitaria.component';
+import {JornadaService} from '../services/jornadas/jornada.service';
+import {TorneosService} from '../services/torneos/torneos.service';
 
 @NgModule({
     declarations: [
@@ -58,6 +60,10 @@ import { QuinielaUnitariaComponent } from './quinielas/quiniela-unitaria.compone
         ChartsModule,
         PipesModule
 
+    ],
+    providers: [
+      TorneosService,
+      JornadaService
     ]
 })
 

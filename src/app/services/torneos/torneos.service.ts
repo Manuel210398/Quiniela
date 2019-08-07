@@ -13,6 +13,7 @@ import { Jornada } from 'src/models/jornada.model';
 })
 export class TorneosService {
   private subjectTorneo = new BehaviorSubject<any>('');
+
   constructor(public http: HttpClient, public router: Router,public _usuarioService: UsuarioService) { }
   obtenerTorneos()
   {
