@@ -68,12 +68,12 @@ export class QuinielaComponent implements OnInit {
     pronostico.usuario= this._usuarioService.usuario._id;
     pronostico.puntosAnfitrion= partido.puntosAnfitrion;
     pronostico.puntosVisitante= partido.puntosVisitante;
-
+    console.log(pronostico.puntosAnfitrion,pronostico.puntosVisitante);
     this._pronosticoService.actualizarPronostico(pronostico)
     .subscribe((resp:any)=>
     {
       this.pronostico=resp;
-      console.log(this.pronostico);
+      console.log(resp);
     });
   }
 }
