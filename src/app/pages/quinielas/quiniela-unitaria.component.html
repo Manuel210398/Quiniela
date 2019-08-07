@@ -3,13 +3,13 @@
         <div class="card">
             <div class="card-body">
                 <h3 class="box-title m-b-0">Jornada </h3>
-                <form  #f="ngForm" ngNativeValidate (ngSubmit)="guardarPartido(f)">
+                <form  #f="ngForm" ngNativeValidate (ngSubmit)="crearQuiniela(f)">
                     <div class="row">
                         <div class="col-sm-12">
 
                             <div class="form-group">
                                 Escriba el nombre de la Quiniela
-                                <input  name="nombre" type="text" class="form-control"  placeholder="Nombre de la Jornada " required>
+                                <input [(ngModel)]="quiniela.nombre" name="nombre" type="text" class="form-control"  placeholder="Nombre de la Jornada " required>
                             </div>
         
                             <div class="form-group">
@@ -20,11 +20,9 @@
                             </div>
         
         
-                            
-        
                             <div class="form-group">
                                 Seleccione un Estatus
-                                <select  id="status" class="form-control" name="status"  >
+                                <select  id="status" class="form-control" [(ngModel)]="quiniela.estatus" name="status"  >
                                     <option [value]="">PENDIENTE</option>
                                 </select>
                             </div>
@@ -55,14 +53,21 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         <div class="form-group">
-                            Seleccione los Participantes
-                            <select  [(ngModel)]="quiniela.participantes" id="participantes" class="form-control" name="participantes"  >
-                                <option *ngFor="let usuario of usuarios"  [value]="usuario._id">{{usuario.nombre}}</option>
-                            </select>
+                            <form  #f="ngForm" ngNativeValidate (ngSubmit)="agregarParticipantes(f)">
+                                Seleccione los Participantes
+                                <select  [(ngModel)]="quiniela.participantes" id="participantes" class="form-control" name="participantes"  >
+                                    <option *ngFor="let usuario of usuarios"  [value]="usuario._id">{{usuario.nombre}}</option>
+                                </select>
+                                <br><br>
+                                <ul  style="list-style-type:square;">
+                                    <li *ngFor="let participante of participantes">{{participante.nombre}}</li>
+                                </ul>
+                                <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                                    <i class="fa fa-save"></i>
+                                    Guardar
+                                </button>
+                            </form>
                         </div>
-                        <ul  style="list-style-type:square;">
-                            <li *ngFor="let participante of participantes"></li>
-                        </ul>
                     </div>    
                 </div>
             </div>

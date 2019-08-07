@@ -35,9 +35,8 @@
                             <th>Imagen</th>
                             <th>Nombre de la Quiniela</th>
                             <th>Dueño</th>
-                            <th>Torneo</th>
-                            <th>Participantes</th>
                             <th>Estatus</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,7 +45,13 @@
                                 <img [src]="quiniela.img | imagen:'equipos'" class="img-50 img-circle pointer">
                             </th>
                             <th>
-                                <input [(ngModel)]="quiniela.nombre" name="liga" type="text" class="form-control"  placeholder="Nombre del Alias " required>
+                                {{quiniela.nombre}}
+                            </th>
+                            <th>
+                                {{quiniela.usuario.nombre}}
+                            </th>
+                            <th>
+                                {{quiniela.estatus}}
                             </th>
                             <th>
                                 <button [routerLink]="['/quinielaUnitaria',quiniela._id, torneo]" class="btn btn-primary">
