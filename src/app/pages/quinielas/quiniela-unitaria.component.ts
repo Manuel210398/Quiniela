@@ -4,8 +4,8 @@ import { QuinielasService } from 'src/app/services/quinielas/quinielas.service';
 import { Quiniela } from 'src/models/quiniela.model';
 import { TorneosService } from 'src/app/services/torneos/torneos.service';
 import { Torneo } from 'src/models/torneo.model';
-import { UsuarioService } from 'src/app/services/service.index';
 import { Usuario } from 'src/models/usuario.model';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-quiniela-unitaria',

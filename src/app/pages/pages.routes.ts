@@ -17,6 +17,7 @@ import {ResultadosComponent} from './resultados/resultados.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { QuinielasComponent } from './quinielas/quinielas.component';
 import { QuinielaUnitariaComponent } from './quinielas/quiniela-unitaria.component';
+import { AdminGuard } from '../services/guards/admin.guard';
 
 const pagesRoutes: Routes = [
     {
@@ -29,7 +30,16 @@ const pagesRoutes: Routes = [
             {path: 'busqueda/:termino', component: BusquedaComponent , data: {titulo:'Buscador'}},                  
             
             
-            {path: 'usuarios', component: UsuariosComponent , data: {titulo:'Mantenimiento de Usuarios'}},
+            {
+                path: 'usuarios', 
+                component: UsuariosComponent , 
+                canActivate:[AdminGuard],
+                data: {titulo:'Mantenimiento de Usuarios'}
+            },
+
+
+
+
             {path: 'equipos', component: EquiposComponent , data: {titulo:'Mantenimiento de Equipos'}},
             {path: 'estadios', component: EstadiosComponent , data: {titulo:'Mantenimiento de Estadios'}},
             {path: 'resultados', component: ResultadosComponent , data: {titulo:'Mantenimiento Quiniela'}},

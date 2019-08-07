@@ -1,26 +1,59 @@
 <div class="row animated fadeIn" *ngIf="!cargando">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">Quiniela</h3>
-                    <select (change)="cambioJornada( $event.target.value )" [(ngModel)]="jornadas._id" name="visitante" class="form-control" required>
-                        <option *ngFor="let jornada of jornadas" [value]="jornada._id">
-                            {{ jornada.nombre }}
-                        </option>
-                    </select>
-                    <br>
-                    <br>
-                    <br>
-                    <li *ngFor="let partido of partidos">
-                            <app-quinierla-card></app-quinierla-card>
-                    </li> 
-                    
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Resultados de partidos</h3>
+                <select (change)="cambioJornada( $event.target.value )" [(ngModel)]="jornadas._id" name="visitante" class="form-control" required>
+                    <option *ngFor="let jornada of jornadas" [value]="jornada._id">
+                        {{ jornada.nombre }}
+                    </option>
+                </select>
+                <br>
+                <br>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Local</th>
+                            <th></th>
+                            <th>Visitante</th>
+                            <th></th>
+                            <th>Puntos Local</th>
+                            <th>Puntos Visitante</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let partido of partidos">
+                            <td>
+                              <img [src]="partido.anfitrion?.img | imagen:'equipos'" class="img-50 img-circle pointer">
+                            </td>
+                            <td>
+                                {{partido.anfitrion?.nombre}}
+                            </td>
+                            <td>
+                              <img [src]="partido.visitante?.img | imagen:'equipos'" class="img-50 img-circle pointer">
+                            </td>
+                            <td>
+                                {{partido.visitante?.nombre}}
+                            </td>
 
+                            <td>
+                                <input [(ngModel)]="partido.puntosAnfitrion" type="number" min="0" max="30" class="form-control" id="pronosticoAnfitrion" placeholder="Puntos Local" required>
+                            </td>
+                            <td>
+                                <input [(ngModel)]="partido.puntosVisitante" type="number" min="0" max="30" class="form-control" id="pronosticoVisitante" placeholder="Puntos Visitante" required>
+                            </td>
+                            <td>
 
-
-                   
-                </div>
+                            <button (click)="GuardarMarcador(partido)" class="btn btn-primary">
+                                    <i class="fa fa-save"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    
+</div>
+

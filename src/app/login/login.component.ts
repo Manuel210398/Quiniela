@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import Swal from 'sweetalert2';
-import {UsuarioService} from '../services/service.index';
 import {Usuario} from 'src/models/usuario.model';
+import { UsuarioService } from '../services/usuario/usuario.service';
 
 declare function init_plugins();
 

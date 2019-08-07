@@ -7,7 +7,7 @@ import { Equipo } from 'src/models/equipo.model';
 import { Pronostico } from 'src/models/pronostico.model';
 import { PronosticosService } from 'src/app/services/pronosticos/pronosticos.service';
 import { Usuario } from 'src/models/usuario.model';
-import { UsuarioService } from 'src/app/services/service.index';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-quiniela',
