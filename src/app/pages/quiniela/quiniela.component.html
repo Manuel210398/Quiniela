@@ -1,62 +1,132 @@
-<div class="animated fadeIn" *ngIf="!cargando">
 
-  <div class="container-fluid">
 
-    <div class="row page-titles">
-      <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">Quiniela</h3>
-      </div>
-      <div class="col-md-7 align-self-center">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
-          <li class="breadcrumb-item active">Quiniela</li>
-        </ol>
-      </div>
+<div class="box-container" fxLayout="column" [style]="'min-height: 800px;'">
+  <div class="app-title"></div>
+
+  <div class="info-container">
+  </div>
+
+  <div class="horizontal-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="stretch" fxFlex="auto">
+    <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+      <div class="box-title"></div>
+
+      <select (change)="cambioJornada( $event.target.value )" [(ngModel)]="jornadas._id" name="visitante"
+              class="form-control my-select" required>
+        <option value="">Selecciona una jornada</option>
+        <option *ngFor="let jornada of jornadas" [value]="jornada._id">
+          {{ jornada.nombre }}
+        </option>
+      </select>
+
+      <!--div-- class="action-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleType()'>{{(type == "component") ? "Switch to directive" : "Switch to component"}}</div>
+
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleDirection()'>{{(config.direction == "horizontal") ? "Change to vertical" : "Change to horizontal"}}</div>
+
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleSlidesPerView()'>Toggle slides per view</div>
+
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleOverlayControls()'>Toggle overlay controls</div>
+
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleKeyboardControl()'>{{config.keyboard ? "Disable arrow keys" : "Enable arrow keys"}}</div>
+
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleMouseWheelControl()'>{{config.mousewheel ? "Disable mouse wheel" : "Enable mouse wheel"}}</div>
+      </div-->
+      <!--div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleOverlayControls()'>Toggle overlay controls</div-->
 
     </div>
 
+    <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex>
+      <div class="box-title">Swiper</div>
 
-    <div class="row">
-      <div class="col-12 m-t-30">
-        <select (change)="cambioJornada( $event.target.value )" [(ngModel)]="jornadas._id" name="visitante"
-                class="form-control my-select" required>
-          <option value="">Selecciona una jornada</option>
-          <option *ngFor="let jornada of jornadas" [value]="jornada._id">
-            {{ jornada.nombre }}
-          </option>
-        </select>
-      </div>
-    </div>
+      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex>
+        <swiper
+          class="swiper-container" [config]="config" (indexChange)="onIndexChange($event)" fxFlex="auto">
+          <div *ngFor="let partido of partidos" class="swiper-slide">
+            <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+              <!--{{partido.anfitrion.nombre}} vs {{partido.visitante.nombre}}-->
+              <!--app-quinierla-card-- [partido]="partido" ></app-quinierla-card-->
 
-    <div class="row">
-      <div class="col-12 m-t-30 align-content-center">
-        <h4 class="m-b-0">Envia tu quiniela</h4>
-        <p class="text-muted m-t-0 font-12">Califica tu marcador por cada partido, indicando el marcador para el
-          equipo local y visitante.</p>
+              <!--div class="col-12">
+                <div class="card">
+                  <div class="card-body little-profile text-center">
+                    <! --div class="pro-img m-t-20"><img src="../assets/images/users/4.jpg" alt="user"></div - ->
+                    <h3 class="m-b-0">{{partido.anfitrion.estadio.nombre}}</h3>
+                    <h6 class="text-muted">{{partido.fecha}}</h6>
 
-        <!-- Card -->
-        <!--div class="card">
-          <img class="card-img-top img-responsive" src="../assets/images/big/img1.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                  <div class="text-center bg-light">
+                    <div class="row">
+                      <div class="col-5  p-20 b-r">
+                        <img [src]="partido.anfitrion?.img | imagen:'equipos'" class="img-50 img-circle pointer">
+                        <small>Local</small></div>
+                      <div class="col-5  p-20">
+                        <h4 class="m-b-0 font-medium">603</h4><small>Visitante</small></div>
+                    </div>
+                  </div>
+
+
+                </div>
+
+              </div-->
+              <div class="row" fxLayout="row" fxLayoutAlign="center center" >
+                <!-- Column -->
+                <div class="col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="text-center">{{partido.anfitrion.nombre}}</h4>
+                      <div  fxLayoutAlign="space-around center">
+                        <img [src]="partido.anfitrion?.img | imagen:'equipos'" class="img-50 img-circle pointer">
+                      </div>
+                    </div>
+                    <div class="box b-t text-center">
+                      <input type="number" min="0" max="30" class="form-control" id="pronosticoLocal" placeholder="0" required>
+                    </div>
+                  </div>
+                </div>
+                <!-- Column -->
+                <div class="col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="text-center">VS</h4>
+                    </div>
+                  </div>
+                </div>
+                <!-- Column -->
+                <div class="col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="text-center">{{partido.visitante.nombre}}</h4>
+                      <div class="gaugejs-box">
+                        <img [src]="partido.visitante?.img | imagen:'equipos'" class="img-50 img-circle pointer">
+                      </div>
+                    </div>
+                    <div class="box b-t text-center">
+                      <input type="number" min="0" max="30" class="form-control" id="pronosticoVisitante" placeholder="0" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </swiper>
+
+        <!--div *ngIf="type == 'directive' && show" class="swiper-container" [swiper]="config" (indexChange)="onIndexChange($event)">
+          <div class="swiper-wrapper">
+            <div *ngFor="let slide of slides" class="swiper-slide">
+              <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+                {{slide}}
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-scrollbar" [hidden]="config.scrollbar === false"></div>
+          <div class="swiper-pagination" [hidden]="config.pagination === false"></div>
+
+          <div class="swiper-button-prev" [hidden]="config.navigation === false"></div>
+          <div class="swiper-button-next" [hidden]="config.navigation === false"></div>
         </div-->
-        <div class="card-deck ">
-
-
-          <div class="card-group" *ngFor="let partido of partidos; let indice=index">
-
-            <app-quinierla-card [partido]="partido" [indice]="indice"></app-quinierla-card>
-          </div>
-
-          <!-- Card -->
-        </div>
-
-
       </div>
+      {{partido|json}}
     </div>
   </div>
 </div>
-

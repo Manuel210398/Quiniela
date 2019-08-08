@@ -27,6 +27,14 @@ import { QuinielaUnitariaComponent } from './quinielas/quiniela-unitaria.compone
 import {JornadaService} from '../services/jornadas/jornada.service';
 import {TorneosService} from '../services/torneos/torneos.service';
 import {MomentModule} from 'ngx-moment';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto'
+};
 
 import { QuinierlaCardComponent } from './quinierla-card/quinierla-card.component';
 
@@ -50,7 +58,8 @@ import { QuinierlaCardComponent } from './quinierla-card/quinierla-card.componen
         BusquedaComponent,
         QuinielasComponent,
         QuinielaUnitariaComponent,
-        QuinierlaCardComponent
+        QuinierlaCardComponent,
+
     ],
     exports: [
         DashboardComponent,
@@ -63,13 +72,20 @@ import { QuinierlaCardComponent } from './quinierla-card/quinierla-card.componen
         FormsModule,
         ChartsModule,
         PipesModule,
-        MomentModule
+        MomentModule,
+      SwiperModule
 
     ],
     providers: [
       TorneosService,
-      JornadaService
+      JornadaService,
+      {
+        provide: SWIPER_CONFIG,
+        useValue: DEFAULT_SWIPER_CONFIG
+
+      }
+
     ]
 })
 
-export class PagesModule{ }
+export class PagesModule { }

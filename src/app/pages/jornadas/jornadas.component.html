@@ -24,7 +24,7 @@
           </div>
           <div class="row">
             <div class="col-sm-12 col-xs-12">
-            {{torneos|json}} torneo:{{torneo}}
+
             <select class="form-control" (change)="cambioTorneo(  )" id="cmbTorneo"   [(ngModel)]="torneo" data-style="btn-info btn-outline-info">
               <option [value]="''">Seleccione una jornada</option>
               <option *ngFor="let torneo of torneos" [value]="torneo._id">
