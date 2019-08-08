@@ -24,7 +24,7 @@
                         <i class="fa fa-plus"> Crear Quiniela</i>
                     </button>
                 </div>
-                <h3 class="card-title">Quinielas Registrados(<small>{{totalPorTorneo}}</small>)</h3>
+                <h3 class="card-title">Quinielas Registrados(<small>{{totalRegistro}}</small>)</h3>
                 <br>
                 <select (change)="cambioTorneo( $event.target.value )" name="torneo"  class="form-control" [(ngModel)]="torneo" required>
                         <option [value]="''">Seleccione una jornada</option>
@@ -70,8 +70,11 @@
                     </tbody>
                 </table>
 
-                <button (click)="cambiarDesde(-5)" class="btn btn-secondary">Anteriores</button>
-                <button (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>
+                <button disabled *ngIf="estado==false" (click)="cambiarDesde(-5)" class="btn btn-secondary">Anteriores</button>
+                <button disabled *ngIf="estado==false" (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>
+
+                <button *ngIf="estado==true" (click)="cambiarDesde(-5)" class="btn btn-secondary">Anteriores</button>
+                <button *ngIf="estado==true" (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>
             </div>
         </div>
     </div>

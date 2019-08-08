@@ -18,7 +18,7 @@ export class QuinielasComponent implements OnInit , OnDestroy{
   torneos:Torneo[]=[];
   estado:boolean=false;
   torneo: any = '';
-  totalRegistro:number=0 ; totalPorTorneo:number=0;
+  totalRegistro:number=0 ; 
   subscriptionTorneo: Subscription;
   constructor(public _quinielaService: QuinielasService, 
     public _torenoService: TorneosService,public _activatedRoute: ActivatedRoute, public _torneoService: TorneosService,public _modalUploadService: ModalUploadService
@@ -50,8 +50,6 @@ export class QuinielasComponent implements OnInit , OnDestroy{
     {
       this.quinielas=resp.quinielas;
       console.log( this.quinielas);
-      this.totalPorTorneo=resp.quinielas.length;
-      console.log(this.totalPorTorneo);
       this.estado=true;
     });
   }
@@ -71,7 +69,7 @@ export class QuinielasComponent implements OnInit , OnDestroy{
       console.log(event);
       this.torneo = event;
       this.obtenerQuinielaPaginadayTorneo();
-      this.obtenerQuiniela();
+    
     }
   }
   eliminarQuiniela(quiniela:Quiniela){
@@ -82,7 +80,7 @@ export class QuinielasComponent implements OnInit , OnDestroy{
   {
     let desde= this.desde + valor;
     console.log(desde);
-    if (desde>=this.totalPorTorneo){
+    if (desde>=this.totalRegistro){
       return;
     }
     if (desde< 0){
@@ -101,7 +99,6 @@ export class QuinielasComponent implements OnInit , OnDestroy{
       console.log( this.quinielas);
      
       this.totalRegistro=resp.total;
-      console.log(this.totalPorTorneo);
       console.log( this.totalRegistro);
       this.estado=true;
       
@@ -110,7 +107,7 @@ export class QuinielasComponent implements OnInit , OnDestroy{
   mostrarModal(quiniela:Quiniela)
   {
     this._modalUploadService.mostrarModal('quinielas',quiniela._id);
-    this.obtenerQuiniela();
+    this.obtenerQuinielaPaginadayTorneo();
   }
   ngOnDestroy()
   {
