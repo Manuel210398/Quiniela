@@ -30,5 +30,6 @@ export class ModalUploadService {
     this.tipo = tipo;
     console.log(tipo);
     console.log(id);
+    
   }
 }

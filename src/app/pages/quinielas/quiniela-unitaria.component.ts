@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { QuinielasService } from 'src/app/services/quinielas/quinielas.service';
 import { Quiniela } from 'src/models/quiniela.model';
@@ -7,20 +7,26 @@ import { Torneo } from 'src/models/torneo.model';
 import { Usuario } from 'src/models/usuario.model';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-quiniela-unitaria',
   templateUrl: './quiniela-unitaria.component.html',
   styles: []
 })
-export class QuinielaUnitariaComponent implements OnInit {
+export class QuinielaUnitariaComponent implements OnInit, OnDestroy {
   torneo: any;
   torneos:Torneo[]=[];
   usuarios:Usuario[]=[];
   participantes: Quiniela[]=[];
-  quiniela: Quiniela= new Quiniela();
+  estado: boolean = false;
+  subscriptionTorneo: Subscription;
+  quiniela: Quiniela= new Quiniela('','','');
   constructor(public router: Router, public _activatedRoute: ActivatedRoute,
-    public _quinielaService: QuinielasService, public _torneosService: TorneosService, public _usuarioService: UsuarioService) { 
+    public _quinielaService: QuinielasService, 
+    public _torneosService: TorneosService, 
+    public _usuarioService: UsuarioService,
+    public _torneoService : TorneosService) { 
 
 
 
@@ -30,11 +36,22 @@ export class QuinielaUnitariaComponent implements OnInit {
       this.torneo =  params['idTorneo'];
       if (id !== 'nuevo') {
         this.cargarQuiniela(id)
-        //this.estado = true;
+        this.estado = true;
       }else{
-        //this.jornada.torneo = this.torneo;
+        this.quiniela.torneo = this.torneo;
       }
     });
+    this.subscriptionTorneo = this._torneoService.getTorneo().subscribe(torneo=>
+      {
+        console.log('cambie Torneo en jornada:'+torneo)
+        if (torneo){
+          this.torneo= torneo;
+          console.log(this.torneo);
+        }
+        else{
+          console.log('no');
+        }
+      });
   }
 
   ngOnInit() {
@@ -83,20 +100,21 @@ export class QuinielaUnitariaComponent implements OnInit {
       //this.cargarParticipantes();
     });
   }
-  crearQuiniela(f: NgForm)
+  crearQuiniela(quiniela)
   {
-    console.log(f.valid);
-    console.log(f.value);
-    if (f.invalid){
-      return;
-    }
     this._quinielaService.crearQuiniela(this.quiniela)
     .subscribe((quiniela)=>
     {
       this.quiniela=quiniela;
-      console.log(this.quiniela);
+      console.log(quiniela);
       this.quiniela._id=quiniela._id;
-      this.router.navigate(['/partidos',this.quiniela]);
+      this.router.navigate(['/quinielas',this.torneo]);
     });
   }
+  
+  ngOnDestroy()
+  {
+    this.subscriptionTorneo.unsubscribe();
+  }
+
 }

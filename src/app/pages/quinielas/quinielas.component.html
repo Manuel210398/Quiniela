@@ -16,11 +16,15 @@
         <div class="card">
             <div class="card-body">
                 <div class="text-right">
-                    <button [routerLink]="['/quinielaUnitaria','nuevo',torneo]"type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                    <button disabled *ngIf="estado==false" [routerLink]="['/quinielaUnitaria','nuevo',torneo]"type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                        <i class="fa fa-plus"> Crear Quiniela</i>
+                    </button>
+
+                    <button *ngIf="estado==true" [routerLink]="['/quinielaUnitaria','nuevo',torneo]"type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
                         <i class="fa fa-plus"> Crear Quiniela</i>
                     </button>
                 </div>
-                <h3 class="card-title">Quinielas Registrados(<small>{{totalRegistro}}</small>)</h3>
+                <h3 class="card-title">Quinielas Registrados(<small>{{totalPorTorneo}}</small>)</h3>
                 <br>
                 <select (change)="cambioTorneo( $event.target.value )" name="torneo"  class="form-control" [(ngModel)]="torneo" required>
                         <option [value]="''">Seleccione una jornada</option>
@@ -42,7 +46,7 @@
                     <tbody>
                         <tr *ngFor="let quiniela of quinielas">
                             <th>
-                                <img [src]="quiniela.img | imagen:'equipos'" class="img-50 img-circle pointer">
+                                <img (click)="mostrarModal(quiniela)" [src]="quiniela.img | imagen:'quinielas'" class="img-50 img-circle pointer">
                             </th>
                             <th>
                                 {{quiniela.nombre}}
@@ -53,11 +57,12 @@
                             <th>
                                 {{quiniela.estatus}}
                             </th>
+                            
                             <th>
                                 <button [routerLink]="['/quinielaUnitaria',quiniela._id, torneo]" class="btn btn-primary">
                                     <i class="fa fa-save"></i>
                                 </button>
-                                <button (click)="borrarTorneo(torneo)" class="btn btn-danger">
+                                <button (click)="eliminarQuiniela(quiniela)" class="btn btn-danger">
                                     <i class="fa fa-trash-o"></i>
                                 </button>
                             </th>
