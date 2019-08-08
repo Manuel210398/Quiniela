@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Usuario} from 'src/models/usuario.model';
-import {UsuarioService} from 'src/app/services/service.index';
 import Swal from 'sweetalert2';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(public _usuarioService: UsuarioService) {
     this.usuario = _usuarioService.usuario;
-  }
+  }Pqui
 
   ngOnInit() {
   }

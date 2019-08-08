@@ -4,8 +4,9 @@ import { QuinielasService } from 'src/app/services/quinielas/quinielas.service';
 import { Quiniela } from 'src/models/quiniela.model';
 import { TorneosService } from 'src/app/services/torneos/torneos.service';
 import { Torneo } from 'src/models/torneo.model';
-import { UsuarioService } from 'src/app/services/service.index';
 import { Usuario } from 'src/models/usuario.model';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-quiniela-unitaria',
@@ -67,6 +68,35 @@ export class QuinielaUnitariaComponent implements OnInit {
     {
       this.usuarios= resp.usuarios;
       console.log(this.usuarios);
+    });
+  }
+  agregarParticipantes(f: NgForm)
+  {
+    console.log(f.value.participantes);
+    if (f.invalid) {
+      return;
+    }
+    this._quinielaService.agregarParticipante(this.quiniela._id,f.value.participantes)
+    .subscribe((resp:any)=>
+    {
+      console.log(resp);
+      //this.cargarParticipantes();
+    });
+  }
+  crearQuiniela(f: NgForm)
+  {
+    console.log(f.valid);
+    console.log(f.value);
+    if (f.invalid){
+      return;
+    }
+    this._quinielaService.crearQuiniela(this.quiniela)
+    .subscribe((quiniela)=>
+    {
+      this.quiniela=quiniela;
+      console.log(this.quiniela);
+      this.quiniela._id=quiniela._id;
+      this.router.navigate(['/partidos',this.quiniela]);
     });
   }
 }

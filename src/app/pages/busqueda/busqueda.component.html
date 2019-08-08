@@ -1,18 +1,79 @@
 
 <div class="row">
-    <div class="col-4">
+    <div class="col-3">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Usuarios</h4>
-                <table class="table table-hover">
+                <table class="table table-hover" *ngIf="usuarios.length >0">
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <tr *ngFor="let usuario of usuarios" [routerLink]="['/usuarios']" class="pointer">
+                            <td> <img [src]="usuario.img | imagen" class="img-50 img-circle pointer"></td>
+                            <td>{{usuario.nombre}}</td>
                         </tr>
                     </tbody>
                 </table>
+                <div class="alert alert-info" *ngIf="usuarios.length == 0 ">
+                    No hay Registros
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Equipos</h4>
+                <table class="table table-hover" *ngIf="equipos.length >0">
+                    <tbody>
+                        <tr *ngFor="let equipo of equipos" [routerLink]="['/equipos']" class="pointer">
+                            <td><img [src]="equipo.img | imagen:'equipos'"  class="img-50 img-circle pointer"></td>
+                            <td>{{equipo.nombre}}</td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="alert alert-info" *ngIf="equipos.length == 0 ">
+                    No hay Registros
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Torneos</h4>
+                <table class="table table-hover"  *ngIf="torneos.length >0">
+                    <tbody>
+                        <tr *ngFor="let torneo of torneos" [routerLink]="['/torneos']" class="pointer">
+                            
+                            <td>{{torneo.nombre}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="alert alert-info" *ngIf="torneos.length == 0 ">
+                    No hay Registros
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Estadios</h4>
+                <table class="table table-hover" *ngIf="estadios.length >0">
+                    <tbody>
+                        <tr *ngFor="let estadio of estadios" [routerLink]="['/estadios']" class="pointer">
+                            <td><img [src]="estadio.img | imagen:'estadios'"  class="img-50 img-circle pointer"></td>
+                            <td>{{estadio.nombre}}</td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="alert alert-info" *ngIf="estadios.length == 0 ">
+                    No hay Registros
+                </div>
             </div>
         </div>
     </div>

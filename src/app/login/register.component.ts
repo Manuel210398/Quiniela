@@ -2,9 +2,9 @@ import { Component, OnInit, ɵSWITCH_TEMPLATE_REF_FACTORY__POST_R3__ } from '@an
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
-import { UsuarioService } from '../services/service.index';
 import { Usuario } from 'src/models/usuario.model';
 import { Router } from '@angular/router';
+import { UsuarioService } from '../services/usuario/usuario.service';
 
 declare function init_plugins();
 @Component({

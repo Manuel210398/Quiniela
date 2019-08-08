@@ -1,4 +1,5 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {PartidoService} from 'src/app/services/partidos/partido.service';
 import {Partido} from 'src/models/partidos.model';
 import {Jornada} from 'src/models/jornada.model';
@@ -6,15 +7,10 @@ import {EquiposService} from 'src/app/services/equipos/equipos.service';
 import {Equipo} from 'src/models/equipo.model';
 import {Pronostico} from 'src/models/pronostico.model';
 import {PronosticosService} from 'src/app/services/pronosticos/pronosticos.service';
-import {Usuario} from 'src/models/usuario.model';
-import {UsuarioService} from 'src/app/services/service.index';
-import {
-  SwiperComponent,
-  SwiperConfigInterface,
-  SwiperDirective,
-  SwiperPaginationInterface,
-  SwiperScrollbarInterface
-} from 'ngx-swiper-wrapper';
+//import {UsuarioService} from 'src/app/services/service.index';
+import {UsuarioService} from 'src/app/services/usuario/usuario.service';
+
+import {SwiperConfigInterface, SwiperPaginationInterface, SwiperScrollbarInterface} from 'ngx-swiper-wrapper';
 
 declare const jQuery: any;
 declare const $: any;
@@ -81,9 +77,10 @@ export class QuinielaComponent implements OnInit, AfterViewInit, OnDestroy {
       'slidesPerView': 1,
       'keyboard': true,
       'mousewheel': true,
-      'scrollbar': false,
-      'navigation': false,
-      'pagination': {'el': '.swiper-pagination', 'clickable': true, 'hideOnClick': false}
+      'scrollbar': true,
+        'navigation': false,
+      "pagination": this.pagination
+      //'pagination': {'el': '.swiper-pagination', 'clickable': true, 'hideOnClick': false}
     };
 
   pronosticoLocal = 0;
