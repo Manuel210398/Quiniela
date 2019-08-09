@@ -26,10 +26,6 @@ export class JornadaComponent implements OnInit, AfterViewInit, OnDestroy  {
   constructor(public router: Router, public _activatedRoute: ActivatedRoute, public _jornadaService: JornadaService
     , public _torneoService: TorneosService) {
 
-
-
-
-
     this._activatedRoute.params.subscribe(params => {
       let id = params['id'];
       this.torneo =  params['idTorneo'];

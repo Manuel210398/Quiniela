@@ -16,8 +16,14 @@
         <div class="card">
             <div class="card-body">
                 <div class="text-right">
-                    <button [routerLink]="['/quinielaUnitaria','nuevo',torneo]"type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
-                        <i class="fa fa-plus"></i> Crear Quiniela
+
+                    <button disabled *ngIf="estado==false" [routerLink]="['/quinielaUnitaria','nuevo',torneo]"type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                        <i class="fa fa-plus"> Crear Quiniela</i>
+                    </button>
+
+                    <button *ngIf="estado==true" [routerLink]="['/quinielaUnitaria','nuevo',torneo]"type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                        <i class="fa fa-plus"> Crear Quiniela</i>
+
                     </button>
                 </div>
                 <h3 class="card-title">Torneos Registrados(<small>{{torneos.length}}</small>)</h3>
@@ -45,7 +51,7 @@
                     <tbody>
                         <tr *ngFor="let quiniela of quinielas">
                             <th>
-                                <img [src]="quiniela.img | imagen:'equipos'" class="img-50 img-circle pointer">
+                                <img (click)="mostrarModal(quiniela)" [src]="quiniela.img | imagen:'quinielas'" class="img-50 img-circle pointer">
                             </th>
                             <th>
                                 {{quiniela.nombre}}
@@ -56,11 +62,12 @@
                             <th>
                                 {{quiniela.estatus}}
                             </th>
+                            
                             <th>
                                 <button [routerLink]="['/quinielaUnitaria',quiniela._id, torneo]" class="btn btn-primary">
                                     <i class="fa fa-save"></i>
                                 </button>
-                                <button (click)="borrarTorneo(torneo)" class="btn btn-danger">
+                                <button (click)="eliminarQuiniela(quiniela)" class="btn btn-danger">
                                     <i class="fa fa-trash-o"></i>
                                 </button>
                             </th>
@@ -68,8 +75,11 @@
                     </tbody>
                 </table>
 
-                <button (click)="cambiarDesde(-5)" class="btn btn-secondary">Anteriores</button>
-                <button (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>
+                <button disabled *ngIf="estado==false" (click)="cambiarDesde(-5)" class="btn btn-secondary">Anteriores</button>
+                <button disabled *ngIf="estado==false" (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>
+
+                <button *ngIf="estado==true" (click)="cambiarDesde(-5)" class="btn btn-secondary">Anteriores</button>
+                <button *ngIf="estado==true" (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>
             </div>
         </div>
     </div>

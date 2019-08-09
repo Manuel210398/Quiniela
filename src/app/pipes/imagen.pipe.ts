@@ -26,6 +26,9 @@ export class ImagenPipe implements PipeTransform {
       case 'estadios':
          url+='/estadios/'+img;
       break;
+      case 'quinielas':
+        url+='/quinielas/'+img;
+     break;
       default:
         console.log('tipo de imagen no existe')
         url+='/usuarios/xxx';
