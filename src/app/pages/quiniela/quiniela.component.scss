@@ -31,10 +31,10 @@
 
 .box-container {
   box-sizing: border-box;
-  width: 800px;
+  width: 10000px;
   height: 500px;
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 100%;
+  max-height: 100%;
   padding: 24px;
   margin: 24px auto;
   border-radius: 4px;
@@ -95,8 +95,8 @@
 
 .swiper-container {
   position: relative;
-  height: 300px;
-  width: 600px;
+  height: 350px;
+  width: 1000px;
   top: 0;
   right: 0;
   bottom: 0;

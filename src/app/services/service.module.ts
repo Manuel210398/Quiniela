@@ -9,6 +9,7 @@ import { UsuarioService } from './usuario/usuario.service';
 import { LoginGuardGuard } from './guards/login-guard.guard';
 import { SubirArchivoService } from './subir-archivo/subir-archivo.service';
 import { AdminGuard } from './guards/admin.guard';
+import { VerificaTokenGuard } from './guards/verifica-token.guard';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { AdminGuard } from './guards/admin.guard';
     [
       SettingsService,
       SharedService, SidebarService, ServiceModule, UsuarioService, LoginGuardGuard,
-       SubirArchivoService, ModalUploadService,AdminGuard
+       SubirArchivoService, ModalUploadService,AdminGuard,VerificaTokenGuard
     ]
 })
 export class ServiceModule {

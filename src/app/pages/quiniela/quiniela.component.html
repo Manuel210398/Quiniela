@@ -1,6 +1,6 @@
 
 
-<div class="box-container" fxLayout="column" [style]="'min-height: 800px;'">
+<div class="box-container" fxLayout="column" [style]="'min-height: 1000px;'">
   <div class="app-title"></div>
 
   <div class="info-container">
@@ -10,7 +10,7 @@
     <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
       <div class="box-title"></div>
 
-      <select (change)="cambioJornada( $event.target.value )" [(ngModel)]="jornadas._id" name="visitante"
+      <select (change)="cambioJornada( $event.target.value )" [(ngModel)]="jornadas" name="visitante"
               class="form-control my-select" required>
         <option value="">Selecciona una jornada</option>
         <option *ngFor="let jornada of jornadas" [value]="jornada._id">

@@ -24,6 +24,20 @@ export class UsuarioService {
     return (this.token.length > 5) ? true : false;
   }
 
+  renuevaToken()
+  {
+    let url = URL_SERVICIOS + '/login/renuevatoken';
+    url += '?token=' +this.token;
+    return this.http.get(url)
+    .pipe(map((resp:any)=>
+    {
+      this.token= resp.token;
+      localStorage.setItem('token', this.token);
+      console.log('token Renovado');
+      return true;
+    }));
+  }
+
   crearUsuario(usuario: Usuario) {
     let url = URL_SERVICIOS + '/usuario';
     return this.http.post(url, usuario).pipe(map((resp: any) => {

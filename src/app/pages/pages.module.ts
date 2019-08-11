@@ -41,11 +41,11 @@ import { QuinierlaCardComponent } from './quinierla-card/quinierla-card.componen
 @NgModule({
     declarations: [
         DashboardComponent,
-        PagesComponent,
+       // PagesComponent,
         AccountSettingsComponent,
         ProfileComponent,
         UsuariosComponent,
-        ModalUploadComponent,
+        //ModalUploadComponent,
         EquiposComponent,
         EstadiosComponent,
         PartidosComponent,
@@ -63,7 +63,7 @@ import { QuinierlaCardComponent } from './quinierla-card/quinierla-card.componen
     ],
     exports: [
         DashboardComponent,
-        PagesComponent
+        //PagesComponent
     ],
     imports: [
         CommonModule,
