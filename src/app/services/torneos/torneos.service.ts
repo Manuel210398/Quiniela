@@ -17,16 +17,16 @@ export class TorneosService {
   constructor(public http: HttpClient, public router: Router,public _usuarioService: UsuarioService) { }
   obtenerTorneos()
   {
-    let url = URL_SERVICIOS + '/torneos';
+    let url = URL_SERVICIOS + '/api/torneos';
     return this.http.get(url);
   }
   obtenerTorneosPaginados(desde:number)
   {
-    let url = URL_SERVICIOS + '/torneos/pages?desde=' + desde;
+    let url = URL_SERVICIOS + '/api/torneos/pages?desde=' + desde;
     return this.http.get(url);
   }
   crearEquipo(nombre: string) {
-    let url = URL_SERVICIOS + '/torneo';
+    let url = URL_SERVICIOS + '/api/torneo';
     url += '?token=' + this._usuarioService.token;
     return this.http.post(url, {nombre})
       .pipe(map((resp: any) => {
@@ -34,7 +34,7 @@ export class TorneosService {
       }));
   }
   actualizarTorneo(torneo: Torneo) {
-    let url = URL_SERVICIOS + '/torneo/' + torneo._id;
+    let url = URL_SERVICIOS + '/api/torneo/' + torneo._id;
     url += '?token=' + this._usuarioService.token;
     console.log(this._usuarioService.token);
     return this.http.put(url, torneo)
@@ -44,7 +44,7 @@ export class TorneosService {
   }
   eliminarTorneo(id:string)
   {
-    let url = URL_SERVICIOS + '/torneo/' + id;
+    let url = URL_SERVICIOS + '/api/torneo/' + id;
     url += '?token=' + this._usuarioService.token;
     return this.http.delete(url)
       .pipe(map(resp => {
@@ -52,7 +52,7 @@ export class TorneosService {
       }));
   }
   buscarTorneo(termino: string) {
-    let url = URL_SERVICIOS + '/busqueda/coleccion/torneos/' + termino;
+    let url = URL_SERVICIOS + '/api/busqueda/coleccion/torneos/' + termino;
     return this.http.get(url)
       .pipe(map((resp: any) => resp.torneos));
   }

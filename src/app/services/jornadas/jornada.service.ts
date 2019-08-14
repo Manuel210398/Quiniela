@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { URL_SERVICIOS } from 'src/app/config/config';
 import { Jornada } from 'src/models/jornada.model';
@@ -24,12 +24,12 @@ export class JornadaService {
 
   obtenerJornada(id:string)
   {
-    let url = URL_SERVICIOS + '/jornada/' + id;
+    let url = URL_SERVICIOS + '/api/jornadas/' + id;
     return this.http.get(url);
   }
   crearJornada(jornada:Jornada)
   {
-    let url = URL_SERVICIOS + '/jornada';
+    let url = URL_SERVICIOS + '/api/jornadas';
     if (jornada._id){
       url+='/'+jornada._id;
       url += '?token=' + this._usuarioService.token;
@@ -53,15 +53,23 @@ export class JornadaService {
   }
   obtenerJornadasPorTorneo(id:string)
   {
-    let url = URL_SERVICIOS + '/jornada/torneo/'+ id;
-    return this.http.get(url);
+    const headers = new HttpHeaders({
+      'x-token': this._usuarioService.token
+    });
+
+    let url = URL_SERVICIOS + '/api/jornadas/'+ id;
+    return this.http.get(url,{headers});
   }
 
   eliminarJornada(id:string)
   {
-    let url = URL_SERVICIOS + '/jornada/'+ id;
+    const headers = new HttpHeaders({
+      'x-token': this._usuarioService.token
+    });
+
+    let url = URL_SERVICIOS + '/api/jornadas/'+ id;
     url += '?token=' + this._usuarioService.token;
-    return this.http.delete(url);
+    return this.http.delete(url,{headers});
   }
 
 

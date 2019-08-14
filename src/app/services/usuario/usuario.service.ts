@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Usuario} from 'src/models/usuario.model';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {URL_SERVICIOS} from 'src/app/config/config';
 import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
@@ -26,9 +26,14 @@ export class UsuarioService {
 
   renuevaToken()
   {
-    let url = URL_SERVICIOS + '/login/renuevatoken';
-    url += '?token=' +this.token;
-    return this.http.get(url)
+    const headers = new HttpHeaders({
+      'x-token': this.token
+    });
+
+
+    let url = URL_SERVICIOS + '/api/login/renuevatoken';
+    //url += '?x-token=' +this.token;
+    return this.http.get(url,{ headers })
     .pipe(map((resp:any)=>
     {
       this.token= resp.token;
@@ -39,12 +44,11 @@ export class UsuarioService {
   }
 
   crearUsuario(usuario: Usuario) {
-    let url = URL_SERVICIOS + '/usuario';
+    let url = URL_SERVICIOS + '/api/usuario';
     return this.http.post(url, usuario).pipe(map((resp: any) => {
       Swal.fire('Importante', 'Te has Registrado Correctamente', 'success');
       return resp.usuario;
     }));
-
   }
 
   cargarStorge() {
@@ -57,7 +61,7 @@ export class UsuarioService {
       this.usuario = null;
       this.menu=[];
     }
-  }
+  } 
 
   guardarStorage(id: string, token: string, usuario: Usuario, menu:any) {
     localStorage.setItem('id', id);
@@ -70,7 +74,7 @@ export class UsuarioService {
   }
 
   loginGoogle(token: string) {
-    let url = URL_SERVICIOS + '/login/google';
+    let url = URL_SERVICIOS + '/api/login/google';
     return this.http.post(url, {token})
       .pipe(map((resp: any) => {
         this.guardarStorage(resp.id, resp.token, resp.usuario, resp.menu);
@@ -86,7 +90,7 @@ export class UsuarioService {
     } else {
       localStorage.removeItem('email');
     }
-    let url = URL_SERVICIOS + '/login';
+    let url = URL_SERVICIOS + '/api/login';
     return this.http.post(url, usuario).pipe(map((resp: any) => {
       this.guardarStorage(resp.id, resp.token, resp.usuario, resp.menu);
       console.log (resp);
@@ -105,15 +109,20 @@ export class UsuarioService {
   }
 
   actualizarUsuario(usuario: Usuario) {
-    let url = URL_SERVICIOS + '/usuario/' + usuario._id;
-    url += '?token=' + this.token;
+
+    const headers = new HttpHeaders({
+      'x-token': this.token
+    });
+
+
+    let url = URL_SERVICIOS + '/api/usuario/' + usuario._id;
+    //url += '?token=' + this.token;
     console.log(url);
-    return this.http.put(url, usuario).pipe(map((resp: any) => {
+    return this.http.put(url , usuario,{ headers }).pipe(map((resp: any) => {
       //this.usuario= resp.usuario;
       if (usuario._id === this.usuario._id) {
         this.guardarStorage(resp.usuario._id, this.token, resp.usuario, this.menu);
       }
-
       Swal.fire('Usuario Actualizado', usuario.nombre, 'success');
       return true;
     }));
@@ -132,20 +141,30 @@ export class UsuarioService {
   }
 
   cargarUsuarios(desde: number = 0) {
-    let url = URL_SERVICIOS + '/usuario?desde=' + desde;
-    return this.http.get(url);
+    const headers = new HttpHeaders({
+      'x-token': this.token
+    });
+
+
+    let url = URL_SERVICIOS + '/api/usuario?desde=' + desde;
+    return this.http.get(url,{ headers });
   }
 
   buscarUsuarios(termino: string) {
-    let url = URL_SERVICIOS + '/busqueda/coleccion/usuarios/' + termino;
+    let url = URL_SERVICIOS + '/api/busqueda/coleccion/usuarios/' + termino;
     return this.http.get(url)
       .pipe(map((resp: any) => resp.usuarios));
   }
 
   borrarUsuarios(id: string) {
-    let url = URL_SERVICIOS + '/usuario/' + id;
-    url += '?token=' + this.token;
-    return this.http.delete(url).pipe(map(resp => {
+
+      const headers = new HttpHeaders({
+      'x-token': this.token
+    });
+
+    let url = URL_SERVICIOS + '/api/usuario/' + id;
+    //url += '?token=' + this.token;
+    return this.http.delete(url,{ headers }).pipe(map(resp => {
       Swal.fire(
         'Borrado!!',
         'Tu Usuario ha sido Eliminado',
