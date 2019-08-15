@@ -11,10 +11,7 @@ export class QuinierlaCardComponent implements OnInit {
 
   @Input() partido: Partido;
   @Input() indice: number;
-
-
   constructor(public _partidoService: PartidoService) { }
-
   ngOnInit() {
   }
   

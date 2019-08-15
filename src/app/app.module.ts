@@ -19,6 +19,8 @@ import {SelectModule} from 'ng2-select';
 import { registerLocaleData } from '@angular/common';
 
 import locale_esMX from '@angular/common/locales/es-MX';
+import { PagesComponent } from './pages/pages.component';
+import { SharedModule } from './shared/shared.module';
 registerLocaleData(locale_esMX, 'es-MX');
 
 
@@ -26,18 +28,20 @@ registerLocaleData(locale_esMX, 'es-MX');
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PagesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     APP_ROUTES,
-    PagesModule,
+    //PagesModule,
     FormsModule,
     ReactiveFormsModule,
     ServiceModule,
     NoopAnimationsModule,
-    SelectModule
+    SelectModule,
+    SharedModule
 
 ],
   providers: [],

@@ -32,7 +32,7 @@ export class TorneosService {
     });
 
     let url = URL_SERVICIOS + '/torneo';
-    url += '?token=' + this._usuarioService.token;
+//    url += '?token=' + this._usuarioService.token;
     return this.http.post(url, {nombre},{headers})
       .pipe(map((resp: any) => {
         resp;
@@ -43,7 +43,7 @@ export class TorneosService {
       'x-token': this._usuarioService.token
     });
     let url = URL_SERVICIOS + '/torneo/' + torneo._id;
-    url += '?token=' + this._usuarioService.token;
+    //url += '?token=' + this._usuarioService.token;
     console.log(this._usuarioService.token);
     return this.http.put(url, torneo,{headers})
       .pipe(map((resp: any) => {
@@ -57,7 +57,7 @@ export class TorneosService {
     });
 
     let url = URL_SERVICIOS + '/torneo/' + id;
-    url += '?token=' + this._usuarioService.token;
+  //  url += '?token=' + this._usuarioService.token;
     return this.http.delete(url,{headers})
       .pipe(map(resp => {
        resp;

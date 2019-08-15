@@ -24,13 +24,31 @@ export class UsuarioService {
     return (this.token.length > 5) ? true : false;
   }
 
+  renuevaToken()
+  {
+    const headers = new HttpHeaders({
+      'x-token': this.token
+  });
+
+
+    let url = URL_SERVICIOS + '/login/renuevatoken';
+    //url += '?x-token=' +this.token;
+    return this.http.get(url,{ headers })
+    .pipe(map((resp:any)=>
+    {
+      this.token= resp.token;
+      localStorage.setItem('token', this.token);
+      console.log('token Renovado');
+      return true;
+    }));
+  }
+
   crearUsuario(usuario: Usuario) {
     let url = URL_SERVICIOS + '/usuario';
     return this.http.post(url, usuario).pipe(map((resp: any) => {
       Swal.fire('Importante', 'Te has Registrado Correctamente', 'success');
       return resp.usuario;
     }));
-
   }
 
   cargarStorge() {
@@ -43,7 +61,7 @@ export class UsuarioService {
       this.usuario = null;
       this.menu=[];
     }
-  }
+  } 
 
   guardarStorage(id: string, token: string, usuario: Usuario, menu:any) {
     localStorage.setItem('id', id);
@@ -104,7 +122,6 @@ export class UsuarioService {
       if (usuario._id === this.usuario._id) {
         this.guardarStorage(resp.usuario._id, this.token, resp.usuario, this.menu);
       }
-
       Swal.fire('Usuario Actualizado', usuario.nombre, 'success');
       return true;
     }));

@@ -1,21 +1,15 @@
 <div class="rounded border-info" style="width: 20rem;">
-
   <!--img class="card-img-top" src="/assets/images/big/img1.jpg" alt="Card image cap"-->
-
   <div class=" center">
-    <h5 class="card-title">Estadio {{partido.anfitrion.estadio.nombre}}</h5>
-
-    <p
-      class="card-text">{{partido.fecha | date :'dd/MMM/yyyy HH:mm' }} {{partido.fecha | amLocale:'es-MX' | amTimeAgo }}</p>
-
+    <!--<h5 class="card-title">Estadio {{partido.anfitrion.estadio.nombre}}</h5>-->
+   <!-- <p
+    class="card-text">{{partido.fecha | date :'dd/MMM/yyyy HH:mm' }} {{partido.fecha | amLocale:'es-MX' | amTimeAgo }}</p>-->
     <div class="row line">
       <div class="col-4">
         <div class="column" fxLayoutAlign="start center" >
-          <img [src]="partido.anfitrion?.img | imagen:'equipos'" class="img-50 img-circle pointer">
-
-          {{partido.anfitrion.nombre}}
+          <!--<img [src]="partido.anfitrion?.img | imagen:'equipos'" class="img-50 img-circle pointer">-->
+          <!--{{partido.anfitrion.nombre}}-->
         </div>
-
         <input type="number" min="0" max="30" class="form-control" id="pronosticoLocal" placeholder="0" required>
       </div>
       <div class="">
@@ -23,16 +17,12 @@
       </div>
       <div class="col-4">
         <div class="column center">
-          <img [src]="partido.visitante?.img | imagen:'equipos'" class="img-50 img-circle pointer">
-
-          {{partido.visitante.nombre}}
+          <!--<img [src]="partido.visitante?.img | imagen:'equipos'" class="img-50 img-circle pointer">-->
+          <!--{{partido.visitante.nombre}}-->
         </div>
         <input type="number" min="0" max="30" class="form-control" id="pronosticoVisitante" placeholder="0" required>
       </div>
-
     </div>
-
-
   </div>
 </div>
 

@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   providedIn: 'root'
 })
 export class EstadioService {
-
+  token: string;
   constructor(public http: HttpClient,
               public router: Router,
               public _usuarioService: UsuarioService) {

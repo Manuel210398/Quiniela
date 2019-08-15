@@ -79,7 +79,6 @@ export class QuinielasComponent implements OnInit, OnDestroy, AfterViewInit {
       console.log(this.torneo);
       //this.torneo = event;
       this.obtenerQuinielaPaginadayTorneo();
-
     }
   }
 

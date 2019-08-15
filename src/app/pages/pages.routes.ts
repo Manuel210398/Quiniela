@@ -18,56 +18,147 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 import { QuinielasComponent } from './quinielas/quinielas.component';
 import { QuinielaUnitariaComponent } from './quinielas/quiniela-unitaria.component';
 import { AdminGuard } from '../services/guards/admin.guard';
+import { VerificaTokenGuard } from '../services/guards/verifica-token.guard';
 
 const pagesRoutes: Routes = [
     {
-        path:'',component: PagesComponent,
-        canActivate:[LoginGuardGuard],
-        children:[
-            {path: 'dashboard', component: DashboardComponent, data: {titulo:'Dashboard'}},
-            {path: 'account-settings', component: AccountSettingsComponent , data: {titulo:'Ajustes del Tema'}},
-            {path: 'profile', component: ProfileComponent , data: {titulo:'Perfil de Usuario'}},    
-            {path: 'busqueda/:termino', component: BusquedaComponent , data: {titulo:'Buscador'}},                  
-            
-            
-            {
-                path: 'usuarios', 
-                component: UsuariosComponent , 
-                canActivate:[AdminGuard],
-                data: {titulo:'Mantenimiento de Usuarios'}
-            },
+        path: 'dashboard', 
+        component: DashboardComponent, 
+        canActivate:[VerificaTokenGuard],
+        data: {titulo:'Dashboard'}
+    },
+    {
+        path: 'account-settings', 
+        component: AccountSettingsComponent , 
+        canActivate:[VerificaTokenGuard],
+        data: {titulo:'Ajustes del Tema'}
+    },
+    {
+        path: 'profile', 
+        component: ProfileComponent , 
+        canActivate:[VerificaTokenGuard],
+        data: {titulo:'Perfil de Usuario'}
+    },    
+    {
+        path: 'busqueda/:termino', 
+        component: BusquedaComponent , 
+        canActivate:[VerificaTokenGuard],
+        data: {titulo:'Buscador'}
+    },                  
+    {
+        path: 'usuarios', 
+        component: UsuariosComponent , 
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento de Usuarios'}
+    },
+    {
+        path: 'equipos', 
+        component: EquiposComponent , 
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento de Equipos'}
+    },
 
+    {
+        path: 'estadios', 
+        component: EstadiosComponent , 
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento de Estadios'}
+    },
+    {
+        path: 'resultados', 
+        component: ResultadosComponent , 
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento Quiniela'}
+    },
+    {
+        path: 'quiniela', 
+        component: QuinielaComponent , 
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento Quiniela'}
+    },
+    {
+        path: 'partidos', 
+        component: PartidosComponent , 
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento de Partidos'}
+    },
+    {
+        path: 'partidos/:idJornada', 
+        component: PartidosComponent , 
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento de Partidos'}
+    },
+    {
+        path: 'partido/:id', 
+        component: PartidoComponent , 
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento Partido'}
+    },
+    {
+        path: 'partido/:id/:idJornada', 
+        component: PartidoComponent , 
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento Partido'}
+    },
+    
 
+    {
+        path: 'jornadas', 
+        component: JornadasComponent ,
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento Jornadas'}
+    },
+    {
+        path: 'jornadas', 
+        component: JornadasComponent , 
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento Jornadas'}
+    },
+    {
+        path: 'jornada/:id', 
+        component: JornadaComponent , 
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento Jornada'}
+    },
+    {
+        path: 'jornada/:id/:idTorneo', 
+        component: JornadaComponent , 
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento Jornada'}
+    },
 
+    {
+        path: 'quinielas', 
+        component: QuinielasComponent , 
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento Quinielas'}
+    },
+    {
+        path: 'quinielas/:idTorneo', 
+        component: QuinielasComponent , 
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento Jornadas'}
+    },
+    {
+        path: 'quinielaUnitaria/:id', 
+        component: QuinielaUnitariaComponent ,
+        canActivate:[AdminGuard,VerificaTokenGuard],
+            data: {titulo:'Mantenimiento Jornada'}
+    },
+    {
+        path: 'quinielaUnitaria/:id/:idTorneo', 
+        component: QuinielaUnitariaComponent , 
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento Jornada'}
+    },
+    {
+        path: 'torneos', 
+        component: TorneosComponent , 
+        canActivate:[AdminGuard,VerificaTokenGuard],
+        data: {titulo:'Mantenimiento Torneo'}
+    },
 
-            {path: 'equipos', component: EquiposComponent , data: {titulo:'Mantenimiento de Equipos'}},
-            {path: 'estadios', component: EstadiosComponent , data: {titulo:'Mantenimiento de Estadios'}},
-            {path: 'resultados', component: ResultadosComponent , data: {titulo:'Mantenimiento Quiniela'}},
-            {path: 'quiniela', component: QuinielaComponent , data: {titulo:'Mantenimiento Quiniela'}},
-
-
-            {path: 'partidos', component: PartidosComponent , data: {titulo:'Mantenimiento de Partidos'}},
-            {path: 'partidos/:idJornada', component: PartidosComponent , data: {titulo:'Mantenimiento de Partidos'}},
-            {path: 'partido/:id', component: PartidoComponent , data: {titulo:'Mantenimiento Partido'}},
-            {path: 'partido/:id/:idJornada', component: PartidoComponent , data: {titulo:'Mantenimiento Partido'}},
-           
-
-            {path: 'jornadas', component: JornadasComponent , data: {titulo:'Mantenimiento Jornadas'}},
-            {path: 'jornadas', component: JornadasComponent , data: {titulo:'Mantenimiento Jornadas'}},
-            {path: 'jornada/:id', component: JornadaComponent , data: {titulo:'Mantenimiento Jornada'}},
-            {path: 'jornada/:id/:idTorneo', component: JornadaComponent , data: {titulo:'Mantenimiento Jornada'}},
-
-            {path: 'quinielas', component: QuinielasComponent , data: {titulo:'Mantenimiento Quinielas'}},
-            {path: 'quinielas/:idTorneo', component: QuinielasComponent , data: {titulo:'Mantenimiento Jornadas'}},
-            {path: 'quinielaUnitaria/:id', component: QuinielaUnitariaComponent , data: {titulo:'Mantenimiento Jornada'}},
-            {path: 'quinielaUnitaria/:id/:idTorneo', component: QuinielaUnitariaComponent , data: {titulo:'Mantenimiento Jornada'}},
-
-
-
-          {path: 'torneos', component: TorneosComponent , data: {titulo:'Mantenimiento Torneo'}},
-            {path: '', redirectTo : '/dashboard', pathMatch: 'full'}
-        ]
-    }
-];
+    {path: '', redirectTo : '/dashboard', pathMatch: 'full'}
+]
 
 export const PAGES_ROUTES = RouterModule.forChild(pagesRoutes);

@@ -68,10 +68,16 @@ export class EquiposService {
   }
 
   actualizarEquipo(equipo: Equipo) {
+
+    const headers = new HttpHeaders({
+      'x-token': this._usuarioService.token
+    });
+
+
     let url = URL_SERVICIOS + '/equipo/' + equipo._id;
     url += '?token=' + this._usuarioService.token;
     console.log(this._usuarioService.token);
-    return this.http.put(url, equipo)
+    return this.http.put(url, equipo,{headers})
       .pipe(map((resp: any) => {
         resp.equipo;
         Swal.fire('Equipo Actualizado', 'El Equipo se he Actualizado Correctamente', 'success');
