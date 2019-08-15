@@ -24,7 +24,7 @@ export class JornadaService {
 
   obtenerJornada(id:string)
   {
-    let url = URL_SERVICIOS + '/jornada/' + id;
+    let url = URL_SERVICIOS + '/jornadas/' + id;
     return this.http.get(url);
   }
   crearJornada(jornada:Jornada)
@@ -53,7 +53,7 @@ export class JornadaService {
   }
   obtenerJornadasPorTorneo(id:string)
   {
-    let url = URL_SERVICIOS + '/jornada/torneo/'+ id;
+    let url = URL_SERVICIOS + '/jornadas/'+ id;
     return this.http.get(url);
   }
 

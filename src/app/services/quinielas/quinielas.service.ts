@@ -70,7 +70,7 @@ export class QuinielasService {
     }
     obtenerQuinielasPaginadasyTorneo(id:string,desde:number)
     {
-      let url= URL_SERVICIOS + '/quinielaPaginada/' +id+'?desde=' + desde ;
+      let url= URL_SERVICIOS + '/quinielaPaginada/' +id+'?desde=' ;
       console.log(url);
       return this.http.get(url);
     }

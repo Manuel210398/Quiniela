@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {URL_SERVICIOS} from 'src/app/config/config';
 import {UsuarioService} from '../usuario/usuario.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {map} from 'rxjs/operators';
 import Swal from 'sweetalert2';
@@ -29,12 +29,17 @@ export class PartidoService {
 
 
   crearPartido(partido: Partido) {
+
+    const headers = new HttpHeaders({
+      'x-token': this._usuarioService.token
+    });
+
     let url = URL_SERVICIOS + '/partido';
     if (partido._id)
     {
       url+='/'+partido._id;
-      url += '?token=' + this._usuarioService.token;
-      return this.http.put(url,partido)
+      //url += '?token=' + this._usuarioService.token;
+      return this.http.put(url,partido,{headers})
       .pipe(map((resp:any)=>
         {
           Swal.fire('Importante', 'El partido se ha Actualizado Correctamente', 'success');
@@ -42,8 +47,8 @@ export class PartidoService {
           return resp.partido;
         }));
     }else{
-      url += '?token=' + this._usuarioService.token;
-      return this.http.post(url, partido)
+      //url += '?token=' + this._usuarioService.token;
+      return this.http.post(url, partido,{headers})
         .pipe(map((resp: any) => {
           Swal.fire('Importante', 'El partido se ha Registrado Correctamente', 'success');
           return resp.partido;
@@ -63,9 +68,14 @@ export class PartidoService {
   }
 
   borrarPartido(id: string) {
+
+    const headers = new HttpHeaders({
+      'x-token': this._usuarioService.token
+    });
+
     let url = URL_SERVICIOS + '/partido/' + id;
-    url += '?token=' + this._usuarioService.token;
-    return this.http.delete(url)
+    //url += '?token=' + this._usuarioService.token;
+    return this.http.delete(url,{headers})
       .pipe(map(resp => {
         Swal.fire('Partido Eliminado', 'Eliminado Correctamente', 'success');
       }));
@@ -77,7 +87,7 @@ export class PartidoService {
   }*/
   obtenerJornadas()
   {
-    let url = URL_SERVICIOS + '/jornada/' ;
+    let url = URL_SERVICIOS + '/jornadas/' ;
     return this.http.get(url);
   }
   obtenerPartidoporJornada(id:string)

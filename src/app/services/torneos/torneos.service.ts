@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { URL_SERVICIOS } from 'src/app/config/config';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { UsuarioService } from '../usuario/usuario.service';
@@ -26,27 +26,39 @@ export class TorneosService {
     return this.http.get(url);
   }
   crearEquipo(nombre: string) {
+
+    const headers = new HttpHeaders({
+      'x-token': this._usuarioService.token
+    });
+
     let url = URL_SERVICIOS + '/torneo';
     url += '?token=' + this._usuarioService.token;
-    return this.http.post(url, {nombre})
+    return this.http.post(url, {nombre},{headers})
       .pipe(map((resp: any) => {
         resp;
       }));
   }
   actualizarTorneo(torneo: Torneo) {
+    const headers = new HttpHeaders({
+      'x-token': this._usuarioService.token
+    });
     let url = URL_SERVICIOS + '/torneo/' + torneo._id;
     url += '?token=' + this._usuarioService.token;
     console.log(this._usuarioService.token);
-    return this.http.put(url, torneo)
+    return this.http.put(url, torneo,{headers})
       .pipe(map((resp: any) => {
         resp;
       }));
   }
-  eliminarTorneo(id:string)
-  {
+  eliminarTorneo(id:string){
+
+    const headers = new HttpHeaders({
+      'x-token': this._usuarioService.token
+    });
+
     let url = URL_SERVICIOS + '/torneo/' + id;
     url += '?token=' + this._usuarioService.token;
-    return this.http.delete(url)
+    return this.http.delete(url,{headers})
       .pipe(map(resp => {
        resp;
       }));

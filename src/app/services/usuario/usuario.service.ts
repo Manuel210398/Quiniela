@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Usuario} from 'src/models/usuario.model';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {URL_SERVICIOS} from 'src/app/config/config';
 import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
@@ -91,10 +91,15 @@ export class UsuarioService {
   }
 
   actualizarUsuario(usuario: Usuario) {
+
+    const headers = new HttpHeaders({
+      'x-token': this.token
+    });
+
     let url = URL_SERVICIOS + '/usuario/' + usuario._id;
-    url += '?token=' + this.token;
+    //url += '?token=' + this.token;
     console.log(url);
-    return this.http.put(url, usuario).pipe(map((resp: any) => {
+    return this.http.put(url, usuario,{headers}).pipe(map((resp: any) => {
       //this.usuario= resp.usuario;
       if (usuario._id === this.usuario._id) {
         this.guardarStorage(resp.usuario._id, this.token, resp.usuario, this.menu);
@@ -106,6 +111,9 @@ export class UsuarioService {
   }
 
   cambiarImagen(archivo: File, id: string) {
+
+
+    
     this._subirArchivoServive.subirArchivo(archivo, 'usuarios', id)
       .then((resp: any) => {
         this.usuario.img = resp.usuario.img;
@@ -118,8 +126,13 @@ export class UsuarioService {
   }
 
   cargarUsuarios(desde: number = 0) {
+
+    const headers = new HttpHeaders({
+      'x-token': this.token
+    });
+    
     let url = URL_SERVICIOS + '/usuario?desde=' + desde;
-    return this.http.get(url);
+    return this.http.get(url,{ headers });
   }
 
   buscarUsuarios(termino: string) {
@@ -129,9 +142,13 @@ export class UsuarioService {
   }
 
   borrarUsuarios(id: string) {
+    const headers = new HttpHeaders({
+      'x-token': this.token
+    });
+
     let url = URL_SERVICIOS + '/usuario/' + id;
-    url += '?token=' + this.token;
-    return this.http.delete(url).pipe(map(resp => {
+    //url += '?token=' + this.token;
+    return this.http.delete(url,{headers}).pipe(map(resp => {
       Swal.fire(
         'Borrado!!',
         'Tu Usuario ha sido Eliminado',
@@ -147,7 +164,7 @@ export class UsuarioService {
   }
   obtenerUsuarioSinPaginacion()
   {
-    let url= URL_SERVICIOS + '/usuario/s';
+    let url= URL_SERVICIOS + '/usuarios/';
     return this.http.get(url);
   }
 }

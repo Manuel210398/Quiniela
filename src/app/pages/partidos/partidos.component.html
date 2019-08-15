@@ -20,7 +20,7 @@
                         </button>
                 </div>
                 <h3 class="card-title">Partidos</h3>
-                <select (change)="cambioJornada( $event.target.value )" [(ngModel)]="jornada" name="jornada" class="form-control selectpicker" required>
+                <select (change)="cambioJornada( $event.target.value )" [(ngModel)]="jornada" name="jornada" class="form-control" required>
                     <option  [value]="''">Seleccione una jornada</option>
                     <option *ngFor="let jornada of jornadas" [value]="jornada._id">
                         {{ jornada.nombre }}

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {UsuarioService} from '../usuario/usuario.service';
 import {URL_SERVICIOS} from 'src/app/config/config';
 import {map} from 'rxjs/operators';
@@ -19,7 +19,7 @@ export class EstadioService {
   }
 
   cargarTodosEstadios() {
-    let url = URL_SERVICIOS + '/estadio/s';
+    let url = URL_SERVICIOS + '/estadio/sinPaginacion/';
     return this.http.get(url);
   }
 
@@ -41,19 +41,29 @@ export class EstadioService {
   }
 
   crearEstadio(nombre: string) {
+
+    const headers = new HttpHeaders({
+      'x-token': this._usuarioService.token
+    });
+    
     let url = URL_SERVICIOS + '/estadio';
-    url += '?token=' + this._usuarioService.token;
-    return this.http.post(url, {nombre})
+    //url += '?token=' + this._usuarioService.token;
+    return this.http.post(url, {nombre},{headers})
       .pipe(map((resp: any) => {
         resp.estadios;
       }));
   }
 
   actualizarEstadio(estadio: Estadio) {
+
+    const headers = new HttpHeaders({
+      'x-token': this._usuarioService.token
+    });
+
     let url = URL_SERVICIOS + '/estadio/' + estadio._id;
-    url += '?token=' + this._usuarioService.token;
+    //url += '?token=' + this._usuarioService.token;
     console.log(this._usuarioService.token);
-    return this.http.put(url, estadio)
+    return this.http.put(url, estadio,{headers})
       .pipe(map((resp: any) => {
         resp.estadio;
         Swal.fire('Estadio Actualizado', 'El Estadio se he Actualizado Correctamente', 'success');
@@ -61,9 +71,14 @@ export class EstadioService {
   }
 
   borrarEstadio(id: string) {
+
+    const headers = new HttpHeaders({
+      'x-token': this._usuarioService.token
+    });
+
     let url = URL_SERVICIOS + '/estadio/' + id;
     url += '?token=' + this._usuarioService.token;
-    return this.http.delete(url)
+    return this.http.delete(url,{headers})
       .pipe(map(resp => {
         Swal.fire('Equipo Eliminado', 'Eliminado Correctamente', 'success');
       }));
