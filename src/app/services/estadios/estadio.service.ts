@@ -19,12 +19,12 @@ export class EstadioService {
   }
 
   cargarTodosEstadios() {
-    let url = URL_SERVICIOS + '/estadio/sinPaginacion/';
+    let url = URL_SERVICIOS + '/estadios';
     return this.http.get(url);
   }
 
   cargarEstadios(desde: number) {
-    let url = URL_SERVICIOS + '/estadio?desde=' + desde;
+    let url = URL_SERVICIOS + '/estadios/page?desde=' + desde;
     return this.http.get(url);
   }
 

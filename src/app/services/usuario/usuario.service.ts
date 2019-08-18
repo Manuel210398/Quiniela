@@ -15,7 +15,7 @@ export class UsuarioService {
   usuario: Usuario;
   token: string;
   menu: any = [];
-  constructor(public http: HttpClient, public router: Router, public _subirArchivoServive: SubirArchivoService) {
+  constructor(public http: HttpClient, public router: Router, public _subirArchivoService: SubirArchivoService) {
     this.cargarStorge();
     console.log('Servicio Listo');
   }
@@ -131,7 +131,7 @@ export class UsuarioService {
 
 
     
-    this._subirArchivoServive.subirArchivo(archivo, 'usuarios', id)
+    this._subirArchivoService.subirArchivo(archivo, 'usuarios', id)
       .then((resp: any) => {
         this.usuario.img = resp.usuario.img;
         Swal.fire('Imagen Actualizado', this.usuario.nombre, 'success');
@@ -148,7 +148,7 @@ export class UsuarioService {
       'x-token': this.token
     });
     
-    let url = URL_SERVICIOS + '/usuario?desde=' + desde;
+    let url = URL_SERVICIOS + '/usuarios/page?desde=' + desde;
     return this.http.get(url,{ headers });
   }
 

@@ -20,12 +20,12 @@ export class EquiposService {
   }
 
   cargarEquipos(desde: number) {
-    let url = URL_SERVICIOS + '/equipo?desde=' + desde;
+    let url = URL_SERVICIOS + '/equipos/page?desde=' + desde;
     return this.http.get(url);
   }
 
   cargarTodosEquipos() {
-    let url = URL_SERVICIOS + '/equipo/sinPaginacion/';
+    let url = URL_SERVICIOS + '/equipos';
     return this.http.get(url);
   }
 
