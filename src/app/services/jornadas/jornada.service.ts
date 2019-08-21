@@ -24,7 +24,7 @@ export class JornadaService {
 
   obtenerJornada(id:string)
   {
-    let url = URL_SERVICIOS + '/jornadas/' + id;
+    let url = URL_SERVICIOS + '/jornada/' + id;
     return this.http.get(url);
   }
   crearJornada(jornada:Jornada)
@@ -34,7 +34,7 @@ export class JornadaService {
       'x-token': this._usuarioService.token
     });
 
-    let url = URL_SERVICIOS + '/jornadas';
+    let url = URL_SERVICIOS + '/jornada';
     if (jornada._id){
       url+='/'+jornada._id;
       //url += '?token=' + this._usuarioService.token;
@@ -68,7 +68,7 @@ export class JornadaService {
       'x-token': this._usuarioService.token
     });
 
-    let url = URL_SERVICIOS + '/jornadas/'+ id;
+    let url = URL_SERVICIOS + '/jornada/'+ id;
     //url += '?token=' + this._usuarioService.token;
     return this.http.delete(url,{headers});
   }
