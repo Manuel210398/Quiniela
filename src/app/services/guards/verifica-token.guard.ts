@@ -15,6 +15,7 @@ constructor(public _usuarioService:UsuarioService, public router: Router){}
   canActivate(): Promise<boolean> | boolean{
     console.log('TOken guard');
     let token= this._usuarioService.token;
+    console.log(token);
     let payload = JSON.parse(atob(token.split('.')[1]));
     let expirado = this.expirado(payload.exp);
     if (expirado){

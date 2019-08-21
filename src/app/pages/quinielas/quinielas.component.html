@@ -28,21 +28,12 @@
                 </div>
                 <h3 class="card-title">Torneos Registrados(<small>{{totalRegistro}}</small>)</h3>
 
-<<<<<<< HEAD
-                <select (change)="cambioTorneo()" id="cmbTorneo" class="form-control" [(ngModel)]="torneo" >
-                        <option [value]="''">Seleccione un torneo</option>
-                        <option *ngFor="let torneo of torneos" [value]="torneo._id">
-                                {{torneo.nombre}}
-                        </option>
-                </select>
-=======
                 <select (change)="cambioTorneo()" id="cmbTorneo" class="form-control m-b-20 m-r-10" [(ngModel)]="torneo" >
                     <option [value]="''">Seleccione un torneo</option>
                     <option *ngFor="let torneo of torneos" [value]="torneo._id">
                             {{torneo.nombre}}
                     </option>
             </select>
->>>>>>> b6da8286fc45e7a66b417531adb5453724b838ad
 
 
 

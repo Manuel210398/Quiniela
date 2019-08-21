@@ -74,6 +74,10 @@ export class UsuarioService {
   }
 
   loginGoogle(token: string) {
+    const headers = new HttpHeaders({
+      'x-token': this.token
+  });
+
     let url = URL_SERVICIOS + '/login/google';
     return this.http.post(url, {token})
       .pipe(map((resp: any) => {
