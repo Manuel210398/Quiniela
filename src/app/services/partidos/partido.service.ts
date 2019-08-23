@@ -57,13 +57,19 @@ export class PartidoService {
   }
 
   actualizarPartido(partido: Partido) {
+    const headers = new HttpHeaders({
+      'x-token': this._usuarioService.token
+    });
+
+
     let url = URL_SERVICIOS + '/partido/' + partido._id;
-    url += '?token=' + this._usuarioService.token;
-    console.log(this._usuarioService.token);
-    return this.http.put(url, partido)
+    //url += '?token=' + this._usuarioService.token;
+    //console.log(this._usuarioService.token);
+    return this.http.put(url, partido, {headers})
       .pipe(map((resp: any) => {
-        resp.partido;
+
         Swal.fire('Partido Actualizado', 'El partido se he actualizado correctamente', 'success');
+        return resp.partido;
       }));
   }
 
@@ -75,7 +81,7 @@ export class PartidoService {
 
     let url = URL_SERVICIOS + '/partido/' + id;
     //url += '?token=' + this._usuarioService.token;
-    return this.http.delete(url,{headers})
+    return this.http.delete(url, {headers})
       .pipe(map(resp => {
         Swal.fire('Partido Eliminado', 'Eliminado Correctamente', 'success');
       }));
