@@ -1,0 +1,10 @@
+{
+  "type" : "button",
+  "name" : "Reportes",
+  "icon" : "./advanceAnalytics.png",
+  "functionalize" : {
+    "internal_functionality": false,
+    "url" : "https://srv.cuej.edu.mx/",
+    "target" : "_self" //_ _blank or _self
+  }
+}
