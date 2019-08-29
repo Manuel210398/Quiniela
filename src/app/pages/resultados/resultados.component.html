@@ -6,8 +6,8 @@
                     <select (change)="cambioJornada( $event.target.value )" [(ngModel)]="jornada"
                             name="visitante" class="form-control " required >
                         <option [value]="''" >Seleccione una jornada</option>
-                        <option *ngFor="let jornada of jornadas" [value]="jornada._id">
-                            {{ jornada.nombre }}
+                        <option *ngFor="let _jornada of jornadas" [value]="_jornada._id">
+                            {{ _jornada.nombre }}
                         </option>
                     </select>
                     <br>

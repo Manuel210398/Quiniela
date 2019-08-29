@@ -17,15 +17,15 @@ export class ResultadosComponent implements OnInit {
   equipos: Equipo[] = [];
   jornadas: Jornada[] = [];
   usuario: Usuario;
+  jornada: any;
+  partido: Partido = new Partido();
+
 
   constructor(public _partidoService: PartidoService,
               public _equipoService: EquiposService,
               public _usuarioService: UsuarioService) {
     this.usuario = this._usuarioService.usuario;
   }
-
-
-  partido: Partido = new Partido();
 
   ngOnInit() {
     this.cargarJornadas();
