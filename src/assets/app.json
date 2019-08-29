@@ -3,7 +3,7 @@
   "description" : "App for report generation",
   "details" : "Integra la generacion de reportes de las tareas de tookan.",
   "favicon" :  {
-    "path": "images/logo-light-icon.png"
+    "path": "/assets/images/logo-light-icon.png"
   },
   "developer" : "Inclusive Inc",
   "abilities" : {
